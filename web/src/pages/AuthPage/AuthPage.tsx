@@ -3,6 +3,7 @@ import LoginForm from 'src/components/LoginForm/LoginForm'
 import { MetaTags } from '@redwoodjs/web'
 import { Divider, Stack, Title, Center, Text, Group } from '@mantine/core'
 import { useToggle } from '@mantine/hooks'
+import OAuthButton from '../../components/OAuthButton/OAuthButton'
 
 interface AuthPageTitleProps {
   value: string
@@ -50,6 +51,7 @@ const AuthPage = () => {
           style={{ width: '80vw', maxWidth: '300px' }}
         >
           <AuthPageTitle value={value} />
+          <OAuthButton provider="github" />
           <Divider
             my={'md'}
             variant="dashed"

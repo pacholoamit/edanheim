@@ -13,6 +13,7 @@ const supabaseClient = createClient(
 
 const mantineTheme: MantineThemeOverride = {
   colorScheme: 'light',
+  primaryColor: 'indigo',
 }
 
 const Providers: React.FC = ({ children }) => {
