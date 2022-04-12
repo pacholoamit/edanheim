@@ -12,9 +12,10 @@ import { Router, Route, Private } from '@redwoodjs/router'
 const Routes = () => {
   return (
     <Router>
+      <Route path="/auth" page={AuthPage} name="auth" />
       <Route path="/signin" page={SigninPage} name="signin" />
       <Route path="/signup" page={SignupPage} name="signup" />
-      <Private unauthenticated={'signin'}>
+      <Private unauthenticated={'auth'}>
         <Route path="/" page={HomePage} name="home" />
       </Private>
       <Route notfound page={NotFoundPage} />
