@@ -4,13 +4,22 @@ import { navigate, routes } from '@redwoodjs/router'
 import { MetaTags } from '@redwoodjs/web'
 
 const SigninPage = () => {
-  const { logIn } = useAuth()
+  const { logIn, client } = useAuth()
   const onSubmit = async (data) => {
     try {
       await logIn({
         email: data.email,
         password: data.password,
       })
+      navigate(routes.home())
+    } catch (error) {
+      console.log(error.message)
+    }
+  }
+
+  const onGithubLogin = async () => {
+    try {
+      await client.auth.signIn({ provider: 'github' })
       navigate(routes.home())
     } catch (error) {
       console.log(error.message)
@@ -27,6 +36,7 @@ const SigninPage = () => {
         <PasswordField name="password" placeholder="password" />
         <Submit>Sign In</Submit>
       </Form>
+      <button onClick={onGithubLogin}>Github login</button>
     </>
   )
 }
