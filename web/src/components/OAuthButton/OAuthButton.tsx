@@ -1,8 +1,9 @@
 import { Button } from '@mantine/core'
 import { useAuth } from '@redwoodjs/auth'
+import { BrandGithub, BrandGoogle } from 'tabler-icons-react'
 
 interface OAuthButtonProps {
-  provider: 'github' | 'google' | 'facebook'
+  provider: 'github' | 'google'
 }
 const OAuthButton: React.FC<OAuthButtonProps> = ({ provider }) => {
   const { client } = useAuth()
@@ -17,8 +18,15 @@ const OAuthButton: React.FC<OAuthButtonProps> = ({ provider }) => {
 
   if (provider === 'github')
     return (
-      <Button color={'dark'} onClick={onClick}>
+      <Button leftIcon={<BrandGithub />} color={'dark'} onClick={onClick}>
         Github
+      </Button>
+    )
+
+  if (provider === 'google')
+    return (
+      <Button leftIcon={<BrandGoogle />} color={'blue'} onClick={onClick}>
+        Google
       </Button>
     )
 }

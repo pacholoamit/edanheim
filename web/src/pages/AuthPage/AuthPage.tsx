@@ -16,6 +16,15 @@ const AuthPageTitle: React.FC<AuthPageTitleProps> = ({ value }) => {
   )
 }
 
+const OAuthButtonsGroup = () => {
+  return (
+    <>
+      <OAuthButton provider="github" />
+      <OAuthButton provider="google" />
+    </>
+  )
+}
+
 interface CallToActionProps {
   value: string
   toggle: (value?: React.SetStateAction<string>) => void
@@ -38,7 +47,7 @@ const CallToAction: React.FC<CallToActionProps> = ({ value, toggle }) => {
 }
 
 const AuthPage = () => {
-  const [value, toggle] = useToggle('Log in!!', ['Sign up!', 'Log in!'])
+  const [value, toggle] = useToggle('Log in!', ['Sign up!', 'Log in!'])
 
   return (
     <>
@@ -51,7 +60,7 @@ const AuthPage = () => {
           style={{ width: '80vw', maxWidth: '300px' }}
         >
           <AuthPageTitle value={value} />
-          <OAuthButton provider="github" />
+          <OAuthButtonsGroup />
           <Divider
             my={'md'}
             variant="dashed"
