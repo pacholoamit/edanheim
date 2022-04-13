@@ -1,7 +1,7 @@
-import RegisterForm from './RegisterForm'
+import SignUpForm from './SignUpForm'
 
 export const generated = () => {
-  return <RegisterForm />
+  return <SignUpForm />
 }
 
 export default { title: 'Components/RegisterForm' }

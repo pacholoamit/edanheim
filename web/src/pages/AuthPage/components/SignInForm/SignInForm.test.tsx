@@ -1,14 +1,14 @@
 import { render } from '@redwoodjs/testing/web'
 
-import RegisterForm from './RegisterForm'
+import SignInForm from './SignInForm'
 
 //   Improve this test with help from the Redwood Testing Doc:
 //    https://redwoodjs.com/docs/testing#testing-components
 
-describe('RegisterForm', () => {
+describe('LoginForm', () => {
   it('renders successfully', () => {
     expect(() => {
-      render(<RegisterForm />)
+      render(<SignInForm />)
     }).not.toThrow()
   })
 })

@@ -1,7 +1,7 @@
-import LoginForm from './LoginForm'
+import SignInForm from './SignInForm'
 
 export const generated = () => {
-  return <LoginForm />
+  return <SignInForm />
 }
 
 export default { title: 'Components/LoginForm' }
