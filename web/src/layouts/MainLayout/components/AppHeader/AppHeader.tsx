@@ -3,9 +3,9 @@ import {
   Header,
   MediaQuery,
   Burger,
-  Text,
+  Image,
 } from '@mantine/core'
-
+import { edanheimLogo } from 'src/constants'
 interface AppHeaderProps {
   opened: boolean
   setOpened: React.Dispatch<React.SetStateAction<boolean>>
@@ -14,6 +14,7 @@ interface AppHeaderProps {
 const AppHeader: React.FC<AppHeaderProps> = ({ opened, setOpened }) => {
   const theme = useMantineTheme()
   const onClick = () => setOpened((o) => !o)
+
   return (
     <Header height={70} p="md">
       <div style={{ display: 'flex', alignItems: 'center', height: '100%' }}>
@@ -27,7 +28,7 @@ const AppHeader: React.FC<AppHeaderProps> = ({ opened, setOpened }) => {
           />
         </MediaQuery>
 
-        <Text>Application header</Text>
+        <Image src={edanheimLogo} fit="contain" height={48} />
       </div>
     </Header>
   )

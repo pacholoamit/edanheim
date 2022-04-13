@@ -1,8 +1,17 @@
 import RegisterForm from 'src/pages/AuthPage/components/RegisterForm'
 import OAuthButton from 'src/pages/AuthPage/components/OAuthButton'
 import LoginForm from 'src/pages/AuthPage/components/LoginForm'
-import { Divider, Stack, Title, Center, Text, Group } from '@mantine/core'
+import {
+  Divider,
+  Stack,
+  Title,
+  Center,
+  Text,
+  Group,
+  Image,
+} from '@mantine/core'
 import { useToggle } from '@mantine/hooks'
+import { edanheimLogo } from 'src/constants'
 
 interface AuthPageTitleProps {
   value: string
@@ -57,6 +66,7 @@ const AuthPage = () => {
           align="stretch"
           style={{ width: '80vw', maxWidth: '300px' }}
         >
+          <Image src={edanheimLogo} fit="contain" height={200} />
           <AuthPageTitle value={value} />
           <OAuthButtonsGroup />
           <Divider

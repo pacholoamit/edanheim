@@ -1,6 +1,6 @@
-import AppHeader from 'src/components/AppHeader'
-import AppNavbar from 'src/components/AppNavbar'
-import AppFooter from 'src/components/AppFooter'
+import AppHeader from 'src/layouts/MainLayout/components/AppHeader'
+import AppNavbar from 'src/layouts/MainLayout/components/AppNavbar'
+import AppFooter from 'src/layouts/MainLayout/components/AppFooter'
 
 import { AppShell, MantineTheme } from '@mantine/core'
 
