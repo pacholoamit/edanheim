@@ -27,6 +27,7 @@ interface NavBarOptionProps {
 }
 
 const NavBarOption: React.FC<NavBarOptionProps> = ({ icon, color, label }) => {
+  const { colors } = useMantineTheme()
   return (
     <UnstyledButton
       sx={(theme) => ({
@@ -41,7 +42,7 @@ const NavBarOption: React.FC<NavBarOptionProps> = ({ icon, color, label }) => {
           backgroundColor:
             theme.colorScheme === 'dark'
               ? theme.colors.dark[6]
-              : theme.colors.gray[0],
+              : theme.colors.violet[0],
         },
       })}
     >
@@ -50,7 +51,14 @@ const NavBarOption: React.FC<NavBarOptionProps> = ({ icon, color, label }) => {
           {icon}
         </ThemeIcon>
 
-        <Text size="sm">{label}</Text>
+        <Text
+          size="sm"
+          color={colors.violet[7]}
+          weight={700}
+          sx={{ opacity: 0.8 }}
+        >
+          {label}
+        </Text>
       </Group>
     </UnstyledButton>
   )
@@ -101,7 +109,7 @@ const UserDetails = () => {
         backgroundColor:
           theme.colorScheme === 'dark'
             ? theme.colors.dark[6]
-            : theme.colors.gray[0],
+            : theme.colors.violet[0],
       },
     },
   }
