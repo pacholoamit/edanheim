@@ -4,4 +4,4 @@ export const generated = () => {
   return <SignInForm />
 }
 
-export default { title: 'Components/LoginForm' }
+export default { title: 'Components/SignInForm' }

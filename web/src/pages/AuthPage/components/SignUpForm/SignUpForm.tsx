@@ -1,4 +1,4 @@
-import { TextInput, Button, Stack, Group, Text, Center } from '@mantine/core'
+import { TextInput, Button, Stack } from '@mantine/core'
 import { useForm } from '@mantine/form'
 import { useAuth } from '@redwoodjs/auth'
 import { navigate, routes } from '@redwoodjs/router'
@@ -12,11 +12,7 @@ const validate = {
   email: (value: string) => (/^\S+@\S+$/.test(value) ? null : 'Invalid email'),
 }
 
-interface SignUpFormProps {
-  toggle: (value?: React.SetStateAction<string>) => void
-}
-
-const SignUpForm: React.FC<SignUpFormProps> = ({ toggle }) => {
+const SignUpForm: React.FC = () => {
   const { client } = useAuth()
   const form = useForm({ initialValues, validate })
 
@@ -30,7 +26,6 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ toggle }) => {
     }
   }
 
-  const onClick = () => toggle()
   return (
     <form onSubmit={form.onSubmit(onSubmit)}>
       <Stack>
@@ -50,18 +45,6 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ toggle }) => {
         />
 
         <Button type="submit">Sign up</Button>
-        <Center>
-          <Group spacing={'xs'}>
-            <Text>Already have an account?</Text>
-            <Text
-              variant="link"
-              style={{ cursor: 'pointer' }}
-              onClick={onClick}
-            >
-              Sign in
-            </Text>
-          </Group>
-        </Center>
       </Stack>
     </form>
   )

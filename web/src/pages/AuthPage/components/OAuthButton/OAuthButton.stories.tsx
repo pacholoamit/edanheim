@@ -1,7 +1,9 @@
 import OAuthButton from './OAuthButton'
 
 export const generated = () => {
-  return <OAuthButton />
+  return <OAuthButton provider="github" />
 }
 
-export default { title: 'Components/OAuthButton' }
+export default {
+  title: 'Components/OAuthButton',
+}

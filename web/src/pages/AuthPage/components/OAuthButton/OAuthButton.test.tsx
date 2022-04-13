@@ -8,7 +8,15 @@ import OAuthButton from './OAuthButton'
 describe('OAuthButton', () => {
   it('renders successfully', () => {
     expect(() => {
-      render(<OAuthButton />)
+      render(<OAuthButton provider="github" />)
+    }).not.toThrow()
+  })
+})
+
+describe('OAuthButton', () => {
+  it('renders successfully', () => {
+    expect(() => {
+      render(<OAuthButton provider="google" />)
     }).not.toThrow()
   })
 })
