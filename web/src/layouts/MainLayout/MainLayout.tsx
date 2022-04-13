@@ -1,6 +1,5 @@
 import AppHeader from 'src/layouts/MainLayout/components/AppHeader'
 import AppNavbar from 'src/layouts/MainLayout/components/AppNavbar'
-import AppFooter from 'src/layouts/MainLayout/components/AppFooter'
 
 import { AppShell, MantineTheme } from '@mantine/core'
 
@@ -21,7 +20,6 @@ const MainLayout: React.FC = ({ children }) => {
       padding="md"
       navbar={<AppNavbar opened={opened} />}
       header={<AppHeader opened={opened} setOpened={setOpened} />}
-      footer={<AppFooter />}
       styles={styles}
       navbarOffsetBreakpoint="sm"
       asideOffsetBreakpoint="sm"

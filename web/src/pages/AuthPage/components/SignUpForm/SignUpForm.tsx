@@ -1,3 +1,5 @@
+import useAuthForm from 'src/pages/AuthPage/hooks/useAuthForm'
+
 import { TextInput, Button, Stack } from '@mantine/core'
 import { useForm } from '@mantine/form'
 import { useAuth } from '@redwoodjs/auth'
@@ -8,12 +10,9 @@ const initialValues = {
   password: '',
 }
 
-const validate = {
-  email: (value: string) => (/^\S+@\S+$/.test(value) ? null : 'Invalid email'),
-}
-
 const SignUpForm: React.FC = () => {
   const { client } = useAuth()
+  const { validate } = useAuthForm()
   const form = useForm({ initialValues, validate })
 
   const onSubmit = async ({ email, password }) => {

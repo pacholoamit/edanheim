@@ -20,53 +20,48 @@ const AuthPage = () => {
   const bottomText = isSignIn ? 'Need an account?' : 'Already have an account?'
   const onClick = () => toggle()
   return (
-    <>
-      <Center style={{ height: '95vh' }}>
-        <Stack
-          justify={'center'}
-          align="stretch"
-          style={{ width: '80vw', maxWidth: '300px' }}
-        >
-          {/* Edanheim Logo */}
-          <Image
-            src={edanheimLogo}
-            fit="contain"
-            height={200}
-            alt="Edanheim logo"
-          />
-          {/* Auth Title */}
-          <Center>
-            <Title>{value}</Title>
-          </Center>
-          {/* OAuth Buttons group */}
-          <OAuthButton provider="github" />
-          <OAuthButton provider="google" />
-          {/* Divider */}
-          <Divider
-            my={'md'}
-            variant="dashed"
-            label="OR"
-            labelPosition="center"
-          />
-          {/* Forms */}
-          {isSignIn ? <SignInForm /> : <SignUpForm />}
-          {/* Bottom Text & Link */}
-          <Center>
-            <Group spacing={'xs'}>
-              <Text>{bottomText}</Text>
-              <Text
-                variant="link"
-                style={{ cursor: 'pointer' }}
-                onClick={onClick}
-              >
-                {value}
-              </Text>
-            </Group>
-          </Center>
-          {/* Bottom Text & Link END */}
-        </Stack>
-      </Center>
-    </>
+    <Center
+      style={{ height: '100vh', marginTop: '20px', marginBottom: '16px' }}
+    >
+      <Stack
+        justify={'center'}
+        align="stretch"
+        style={{ width: '80vw', maxWidth: '300px' }}
+      >
+        {/* Edanheim Logo */}
+        <Image
+          src={edanheimLogo}
+          fit="contain"
+          height={200}
+          alt="Edanheim logo"
+        />
+        {/* Auth Title */}
+        <Center>
+          <Title>{value}</Title>
+        </Center>
+        {/* OAuth Buttons group */}
+        <OAuthButton provider="github" />
+        <OAuthButton provider="google" />
+        {/* Divider */}
+        <Divider my={'md'} variant="dashed" label="OR" labelPosition="center" />
+        {/* Forms */}
+        {isSignIn ? <SignInForm /> : <SignUpForm />}
+        {/* Bottom Text & Link */}
+        <Center>
+          <Group spacing={'xs'}>
+            <Text>{bottomText}</Text>
+            <Text
+              variant="link"
+              style={{ cursor: 'pointer' }}
+              onClick={onClick}
+            >
+              {value}
+            </Text>
+          </Group>
+        </Center>
+        {/* Bottom Text & Link END */}
+      </Stack>
+    </Center>
   )
 }
 

@@ -1,1 +1,1 @@
-export const edanheimLogo = require('src/assets/logo.png')
+export const edanheimLogo = require('public/assets/logo.png')
