@@ -1,5 +1,6 @@
 import Routes from 'src/Routes'
 import Providers from './Providers'
+import './index.css'
 
 const App = () => (
   <Providers>

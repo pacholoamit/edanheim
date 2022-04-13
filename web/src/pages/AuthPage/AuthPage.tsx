@@ -1,9 +1,10 @@
-import RegisterForm from 'src/components/RegisterForm/RegisterForm'
-import LoginForm from 'src/components/LoginForm/LoginForm'
+import RegisterForm from 'src/pages/AuthPage/components/RegisterForm'
+import OAuthButton from 'src/pages/AuthPage/components/OAuthButton'
+import LoginForm from 'src/pages/AuthPage/components/LoginForm'
 import { MetaTags } from '@redwoodjs/web'
 import { Divider, Stack, Title, Center, Text, Group } from '@mantine/core'
 import { useToggle } from '@mantine/hooks'
-import OAuthButton from '../../components/OAuthButton/OAuthButton'
+
 
 interface AuthPageTitleProps {
   value: string
@@ -53,7 +54,7 @@ const AuthPage = () => {
     <>
       <MetaTags title="Auth" description="Auth page" />
 
-      <Center style={{ height: '90vh' }}>
+      <Center style={{ height: '95vh' }}>
         <Stack
           justify={'center'}
           align="stretch"
