@@ -1,10 +1,8 @@
 import RegisterForm from 'src/pages/AuthPage/components/RegisterForm'
 import OAuthButton from 'src/pages/AuthPage/components/OAuthButton'
 import LoginForm from 'src/pages/AuthPage/components/LoginForm'
-import { MetaTags } from '@redwoodjs/web'
 import { Divider, Stack, Title, Center, Text, Group } from '@mantine/core'
 import { useToggle } from '@mantine/hooks'
-
 
 interface AuthPageTitleProps {
   value: string
@@ -35,6 +33,7 @@ const CallToAction: React.FC<CallToActionProps> = ({ value, toggle }) => {
   const introText =
     value === 'Sign up!' ? 'Already have an account?' : 'Need an account?'
   const link = value === 'Sign up!' ? 'Log in' : 'Sign up'
+
   return (
     <Center>
       <Group spacing={'xs'}>
@@ -52,8 +51,6 @@ const AuthPage = () => {
 
   return (
     <>
-      <MetaTags title="Auth" description="Auth page" />
-
       <Center style={{ height: '95vh' }}>
         <Stack
           justify={'center'}
