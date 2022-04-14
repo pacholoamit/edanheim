@@ -19,7 +19,8 @@ export const getGoogleDrive = async ({
 
     oauth2.setCredentials({
       access_token: providerToken,
-      refresh_token: refreshToken,
+      token_type: 'Bearer',
+      // refresh_token: refreshToken,
     })
 
     console.log(providerToken)

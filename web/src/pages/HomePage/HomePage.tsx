@@ -3,7 +3,6 @@ import useCurrentUser from 'src/hooks/useCurrentUser'
 
 import { Link, routes } from '@redwoodjs/router'
 import { MetaTags, useQuery } from '@redwoodjs/web'
-import { useAuth } from '@redwoodjs/auth'
 
 const QUERY = gql`
   query getGoogleDrive($providerToken: String!, $refreshToken: String!) {

@@ -10,7 +10,10 @@ const OAuthButton: React.FC<OAuthButtonProps> = ({ provider }) => {
 
   const onClick = async () => {
     try {
-      await client.auth.signIn({ provider })
+      await client.auth.signIn({
+        provider,
+        scopes: 'https://www.googleapis.com/auth/drive',
+      })
     } catch (error) {
       console.log(error.message)
     }
