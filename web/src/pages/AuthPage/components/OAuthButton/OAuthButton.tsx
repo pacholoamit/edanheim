@@ -6,11 +6,11 @@ interface OAuthButtonProps {
   provider: 'github' | 'google'
 }
 const OAuthButton: React.FC<OAuthButtonProps> = ({ provider }) => {
-  const { client } = useAuth()
+  const { logIn } = useAuth()
 
   const onClick = async () => {
     try {
-      await client.auth.signIn({
+      await logIn({
         provider,
         scopes: 'https://www.googleapis.com/auth/drive',
       })

@@ -3,6 +3,7 @@ import useCurrentUser from 'src/hooks/useCurrentUser'
 
 import { Link, routes } from '@redwoodjs/router'
 import { MetaTags, useQuery } from '@redwoodjs/web'
+import { useAuth } from '@redwoodjs/auth'
 
 const QUERY = gql`
   query getGoogleDrive($providerToken: String!, $refreshToken: String!) {
@@ -14,6 +15,7 @@ const QUERY = gql`
 
 const HomePage = () => {
   const { user, sessionTokens } = useCurrentUser()
+  const { currentUser, userMetadata } = useAuth()
   const { data } = useQuery(QUERY, {
     onError: (error) => console.log(error),
     variables: {
@@ -22,7 +24,7 @@ const HomePage = () => {
     },
   })
 
-  console.log(data)
+  console.log({ currentUser, userMetadata })
   return (
     <>
       <MetaTags title="Home" description="Home page" />

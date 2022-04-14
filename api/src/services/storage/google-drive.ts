@@ -20,12 +20,11 @@ export const getGoogleDrive = async ({
     oauth2.setCredentials({
       access_token: providerToken,
       token_type: 'Bearer',
-      // refresh_token: refreshToken,
+      refresh_token: refreshToken,
     })
 
-    console.log(providerToken)
     const drive = google.drive({ version: 'v3', auth: oauth2 })
-    const res = await drive.files.list({})
+    const res = await drive.files.list()
 
     return {
       data: {
