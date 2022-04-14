@@ -11,7 +11,7 @@ const sx = (theme: MantineTheme) => ({
     backgroundColor:
       theme.colorScheme === 'dark'
         ? theme.colors.dark[6]
-        : theme.colors.violet[0],
+        : theme.colors.violet[0], // Primary color
   },
 })
 
