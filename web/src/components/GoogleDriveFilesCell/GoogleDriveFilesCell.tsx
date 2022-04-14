@@ -1,6 +1,14 @@
 import type { googleDriveFiles } from 'types/graphql'
 import type { CellSuccessProps, CellFailureProps } from '@redwoodjs/web'
-import { Card, Grid, Text, Image, Space, Tooltip } from '@mantine/core'
+import {
+  Card,
+  Grid,
+  Text,
+  Image,
+  Space,
+  Tooltip,
+  MantineTheme,
+} from '@mantine/core'
 import { edanheimLogo } from 'src/constants'
 
 export const QUERY = gql`
@@ -25,6 +33,12 @@ export const Failure = ({ error }: CellFailureProps) => (
 export const Success = ({
   googleDriveFiles,
 }: CellSuccessProps<googleDriveFiles>) => {
+  const sx = (theme: MantineTheme) => ({
+    color:
+      theme.colorScheme === 'dark'
+        ? theme.colors.gray[2]
+        : theme.colors.gray[7],
+  })
   return (
     <Grid gutter={'xl'}>
       {googleDriveFiles.map((file) => {
@@ -36,17 +50,7 @@ export const Success = ({
               </Card.Section>
               <Space h={'sm'} />
               <Tooltip label={file.name}>
-                <Text
-                  size="sm"
-                  sx={(theme) => ({
-                    color:
-                      theme.colorScheme === 'dark'
-                        ? theme.colors.gray[2]
-                        : theme.colors.gray[7],
-                  })}
-                  weight={'bold'}
-                  lineClamp={1}
-                >
+                <Text size="sm" sx={sx} weight={'bold'} lineClamp={1}>
                   {file.name}
                 </Text>
               </Tooltip>

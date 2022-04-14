@@ -17,6 +17,7 @@ interface NavOptionProps {
 
 const NavOption: React.FC<NavOptionProps> = ({ icon, color, label }) => {
   const { colors } = useMantineTheme()
+
   return (
     <PrimaryButton>
       <Group>
@@ -24,12 +25,7 @@ const NavOption: React.FC<NavOptionProps> = ({ icon, color, label }) => {
           {icon}
         </ThemeIcon>
 
-        <Text
-          size="sm"
-          color={colors.violet[7]}
-          weight={600}
-          sx={{ opacity: 0.8 }}
-        >
+        <Text size="sm" weight={600} sx={{ opacity: 0.8 }}>
           {label}
         </Text>
       </Group>
