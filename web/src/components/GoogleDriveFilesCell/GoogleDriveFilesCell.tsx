@@ -39,7 +39,10 @@ export const Success = ({
                 <Text
                   size="sm"
                   sx={(theme) => ({
-                    color: theme.colors.gray[7],
+                    color:
+                      theme.colorScheme === 'dark'
+                        ? theme.colors.gray[2]
+                        : theme.colors.gray[7],
                   })}
                   weight={'bold'}
                   lineClamp={1}

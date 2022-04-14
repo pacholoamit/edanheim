@@ -12,7 +12,7 @@ const supabaseClient = createClient(
 )
 
 const mantineTheme: MantineThemeOverride = {
-  colorScheme: 'light',
+  colorScheme: 'dark',
   primaryColor: 'indigo',
 }
 
