@@ -1,11 +1,29 @@
-import { Link, routes } from '@redwoodjs/router'
-import { MetaTags } from '@redwoodjs/web'
-import SignoutBtn from 'src/components/SignoutBtn/SignoutBtn'
+import SignoutBtn from 'src/components/SignoutBtn'
 import useCurrentUser from 'src/hooks/useCurrentUser'
 
-const HomePage = () => {
-  const { user } = useCurrentUser()
+import { Link, routes } from '@redwoodjs/router'
+import { MetaTags, useQuery } from '@redwoodjs/web'
+import { useAuth } from '@redwoodjs/auth'
 
+const QUERY = gql`
+  query getGoogleDrive($providerToken: String!, $refreshToken: String!) {
+    getGoogleDrive(providerToken: $providerToken, refreshToken: $refreshToken) {
+      data
+    }
+  }
+`
+
+const HomePage = () => {
+  const { user, sessionTokens } = useCurrentUser()
+  const { data } = useQuery(QUERY, {
+    onError: (error) => console.log(error),
+    variables: {
+      providerToken: sessionTokens.providerToken,
+      refreshToken: sessionTokens.refreshToken,
+    },
+  })
+
+  console.log(data)
   return (
     <>
       <MetaTags title="Home" description="Home page" />
