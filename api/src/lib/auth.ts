@@ -38,7 +38,7 @@ export const getCurrentUser = async (
     return null
   }
 
-  const { roles } = parseJWT({ decoded })
+  const roles = decoded[process.env.AUTH0_AUDIENCE + '/roles']
 
   if (roles) {
     return { ...decoded, roles }
@@ -75,7 +75,7 @@ export const hasRole = (roles: AllowedRoles): boolean => {
     return false
   }
 
-  const currentUserRoles = context.currentUser?.roles
+ const currentUserRoles = context.currentUser?.roles
 
   if (typeof roles === 'string') {
     if (typeof currentUserRoles === 'string') {
