@@ -1,19 +1,21 @@
 export const schema = gql`
-  type GoogleDriveData {
-    data: JSONObject!
+  type GoogleDriveFile {
+    kind: String!
+    id: String!
+    name: String!
+    mimeType: String!
   }
 
   input WebSession {
-    provider_token: String!
-    access_token: String!
-    expires_in: Int!
-    expires_at: Int!
-    refresh_token: String!
-    token_type: String!
-    user: JSONObject!
+    provider_token: String
+    access_token: String
+    expires_in: Int
+    expires_at: Int
+    refresh_token: String
+    token_type: String
   }
 
   type Query {
-    getGoogleDrive(session: WebSession!): GoogleDriveData! @requireAuth
+    googleDriveFiles(session: WebSession!): [GoogleDriveFile!]! @requireAuth
   }
 `
