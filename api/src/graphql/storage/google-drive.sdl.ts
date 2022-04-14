@@ -3,10 +3,17 @@ export const schema = gql`
     data: JSONObject!
   }
 
+  input WebSession {
+    provider_token: String!
+    access_token: String!
+    expires_in: Int!
+    expires_at: Int!
+    refresh_token: String!
+    token_type: String!
+    user: JSONObject!
+  }
+
   type Query {
-    getGoogleDrive(
-      providerToken: String!
-      refreshToken: String!
-    ): GoogleDriveData! @skipAuth
+    getGoogleDrive(session: WebSession!): GoogleDriveData! @requireAuth
   }
 `

@@ -1,16 +1,12 @@
-import { useLocalStorage } from '@mantine/hooks'
 import { useAuth } from '@redwoodjs/auth'
+import { SupabaseClient } from '@supabase/supabase-js'
 
 const useCurrentUser = () => {
-  const { userMetadata } = useAuth()
-  const [sessionData, _] = useLocalStorage({ key: 'supabase.auth.token' })
+  const { userMetadata, client } = useAuth()
 
-  const session = sessionData as unknown as any
+  const authClient = client as SupabaseClient
 
-  const sessionTokens = {
-    providerToken: session?.currentSession?.provider_token,
-    refreshToken: session?.currentSession?.refresh_token,
-  }
+  const session = authClient.auth.session()
 
   const user = {
     name: userMetadata.user_metadata.full_name ?? userMetadata.email,
@@ -18,7 +14,7 @@ const useCurrentUser = () => {
     email: userMetadata.email,
   }
 
-  return { user, sessionTokens }
+  return { user, session }
 }
 
 export default useCurrentUser

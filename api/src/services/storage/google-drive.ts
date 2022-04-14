@@ -1,15 +1,10 @@
 import { google } from 'googleapis'
 import { logger } from 'src/lib/logger'
+import { WebSession } from 'src/common'
 
-interface GetGoogleDriveArgs {
-  providerToken: string
-  refreshToken: string
-}
+export const getGoogleDrive = async ({ session }: WebSession) => {
+  const { provider_token } = session
 
-export const getGoogleDrive = async ({
-  providerToken,
-  refreshToken,
-}: GetGoogleDriveArgs) => {
   try {
     const oauth2 = new google.auth.OAuth2(
       process.env.GOOGLE_OAUTH2_CLIENT_ID,
@@ -18,24 +13,20 @@ export const getGoogleDrive = async ({
     )
 
     oauth2.setCredentials({
-      access_token: providerToken,
-      token_type: 'Bearer',
-      refresh_token: refreshToken,
+      access_token: provider_token,
     })
 
     const drive = google.drive({ version: 'v3', auth: oauth2 })
-    const res = await drive.files.list()
+    const { data } = await drive.files.list()
 
     return {
-      data: {
-        res,
-      },
+      data,
     }
   } catch (err) {
     logger.error(err)
     return {
       data: {
-        err,
+        error: err.message,
       },
     }
   }
