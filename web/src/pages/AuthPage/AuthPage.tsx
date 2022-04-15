@@ -13,8 +13,6 @@ import {
   Group,
   Text,
 } from '@mantine/core'
-import { useAuth } from '@redwoodjs/auth'
-import { navigate, routes } from '@redwoodjs/router'
 
 const sx = {
   center: { height: '100vh', marginTop: '20px', marginBottom: '16px' },
@@ -22,16 +20,10 @@ const sx = {
 }
 
 const AuthPage = () => {
-  const { isAuthenticated } = useAuth()
   const [value, toggle] = useToggle('Sign in!', ['Sign up!', 'Sign in!'])
   const isSignIn = value === 'Sign in!'
   const bottomText = isSignIn ? 'Need an account?' : 'Already have an account?'
   const onClick = () => toggle()
-
-  // TODO: Improve redirect method
-  React.useEffect(() => {
-    if (isAuthenticated) navigate(routes.storage())
-  }, [isAuthenticated])
 
   return (
     <Center style={sx.center}>

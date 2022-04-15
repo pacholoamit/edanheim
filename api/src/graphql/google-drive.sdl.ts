@@ -17,5 +17,6 @@ export const schema = gql`
 
   type Query {
     googleDriveFiles(session: WebSession!): [GoogleDriveFile!]! @requireAuth
+    getGoogleDriveAuthUrl: String! @skipAuth
   }
 `

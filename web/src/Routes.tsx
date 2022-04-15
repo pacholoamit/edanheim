@@ -8,14 +8,18 @@
 // 'src/pages/Admin/BooksPage/BooksPage.js' -> AdminBooksPage
 
 import { Router, Route, Private, Set } from '@redwoodjs/router'
-import MainLayout from 'src/layouts/MainLayout/'
+import MainLayout from 'src/layouts/MainLayout'
+import AuthLayout from 'src/layouts/AuthLayout/AuthLayout'
 
 //TODO: Add Loader
 const Routes = () => {
   return (
     <Router>
-      <Route path="/auth" page={AuthPage} name="auth" />
       <Route notfound page={NotFoundPage} />
+
+      <Set wrap={AuthLayout}>
+        <Route path="/auth" page={AuthPage} name="auth" />
+      </Set>
 
       <Private unauthenticated={'auth'}>
         <Set wrap={MainLayout}>
