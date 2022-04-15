@@ -1,7 +1,6 @@
 import PrimaryButton from 'src/components/PrimaryButton'
 import useCurrentUser from 'src/hooks/useCurrentUser'
 
-import { ChevronRight } from 'tabler-icons-react'
 import {
   Avatar,
   Box,
@@ -30,14 +29,13 @@ const NavUserSection = () => {
         <Group>
           <Avatar src={user.avatar} radius="xl" />
           <Box sx={sx(theme).innerBox}>
-            <Text size="sm" weight={500}>
+            <Text size="sm" weight={500} lineClamp={1}>
               {user.name}
             </Text>
-            <Text color="dimmed" size="xs">
+            <Text color="dimmed" size="xs" lineClamp={1}>
               {user.email}
             </Text>
           </Box>
-          <ChevronRight size={18} />
         </Group>
       </PrimaryButton>
     </Box>

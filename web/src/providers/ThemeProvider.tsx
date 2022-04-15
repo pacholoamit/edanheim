@@ -13,6 +13,10 @@ const ThemeProvider: React.FC = ({ children }) => {
   }
   const mantineTheme: MantineThemeOverride = {
     primaryColor: 'indigo',
+    fontFamily: 'Rubik,sans-serif',
+    headings: {
+      fontFamily: 'Rubik,sans-serif',
+    },
     colorScheme,
   }
 
