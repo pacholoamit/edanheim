@@ -13,28 +13,31 @@ import {
   Group,
   Text,
 } from '@mantine/core'
+import { useAuth } from '@redwoodjs/auth'
+import { navigate, routes } from '@redwoodjs/router'
+
+const sx = {
+  center: { height: '100vh', marginTop: '20px', marginBottom: '16px' },
+  stack: { width: '80vw', maxWidth: '300px' },
+}
 
 const AuthPage = () => {
+  const { isAuthenticated } = useAuth()
   const [value, toggle] = useToggle('Sign in!', ['Sign up!', 'Sign in!'])
   const isSignIn = value === 'Sign in!'
   const bottomText = isSignIn ? 'Need an account?' : 'Already have an account?'
   const onClick = () => toggle()
+
+  // TODO: Improve redirect method
+  React.useEffect(() => {
+    if (isAuthenticated) navigate(routes.storage())
+  }, [isAuthenticated])
+
   return (
-    <Center
-      style={{ height: '100vh', marginTop: '20px', marginBottom: '16px' }}
-    >
-      <Stack
-        justify={'center'}
-        align="stretch"
-        style={{ width: '80vw', maxWidth: '300px' }}
-      >
+    <Center style={sx.center}>
+      <Stack justify={'center'} align="stretch" style={sx.stack}>
         {/* Edanheim Logo */}
-        <Image
-          src={edanheimLogo}
-          fit="contain"
-          height={200}
-          alt="Edanheim logo"
-        />
+        <Image src={edanheimLogo} fit="contain" height={200} alt="logo" />
         {/* Auth Title */}
         <Center>
           <Title>{value}</Title>

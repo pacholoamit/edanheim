@@ -10,14 +10,16 @@
 import { Router, Route, Private, Set } from '@redwoodjs/router'
 import MainLayout from 'src/layouts/MainLayout/'
 
+//TODO: Add Loader
 const Routes = () => {
   return (
     <Router>
       <Route path="/auth" page={AuthPage} name="auth" />
       <Route notfound page={NotFoundPage} />
+
       <Private unauthenticated={'auth'}>
         <Set wrap={MainLayout}>
-          <Route path="/" page={HomePage} name="home" />
+          <Route path="/" page={StoragePage} name="storage" />
         </Set>
       </Private>
     </Router>

@@ -17,7 +17,7 @@ export const googleDriveFiles = async ({ session }: WebSession) => {
   const drive = google.drive({ version: 'v3', auth: oauth2 })
   // TODO: Pagination for Google drive files
   const { data } = await drive.files.list({
-    pageSize: 1000,
+    pageSize: 10,
     orderBy: 'modifiedTime desc',
     q: `mimeType != 'application/vnd.google-apps.folder'`,
   })
