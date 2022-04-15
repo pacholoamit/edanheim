@@ -44,7 +44,10 @@ const StoragePage = () => {
       name: 'Google Drive',
       logo: <GoogleDriveSVG style={sx.svgLogo} />,
       onClick: () => {
-        query().then(({ data }) => window.open(data.getGoogleDriveAuthUrl))
+        query().then(({ data }) => {
+          console.log(data.getGoogleDriveAuthUrl)
+          window.open(data.getGoogleDriveAuthUrl)
+        })
       },
     },
     {

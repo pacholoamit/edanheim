@@ -19,23 +19,25 @@ import { authClient } from 'src/lib/google'
  * @param { Context } context - contains information about the invocation,
  * function, and execution environment.
  */
-export const handler = async (event: APIGatewayEvent, context: Context) => {
-  logger.info('Invoked auth function', { context })
+export const handler = async (event: APIGatewayEvent, _: Context) => {
+  logger.info('Invoked auth function')
 
   if (!event.queryStringParameters.code) {
     throw new ValidationError('Query string parameter "code" is required.')
   }
+  try {
+    const { code } = event.queryStringParameters
+    const { tokens } = await authClient.getToken(code)
 
-  const { code } = event.queryStringParameters
-  const { tokens } = await authClient.getToken(code)
-
-  return {
-    statusCode: 200,
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      tokens,
-    }),
+    logger.info(tokens)
+    return {
+      statusCode: 301,
+      headers: {
+        Location: process.env.WEB_DOMAIN,
+      },
+    }
+  } catch (err) {
+    logger.error('Error in auth function', { err })
+    throw new Error(err.message)
   }
 }
