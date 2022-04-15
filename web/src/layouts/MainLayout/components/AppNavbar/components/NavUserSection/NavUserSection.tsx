@@ -12,8 +12,12 @@ import {
 } from '@mantine/core'
 
 const sx = (theme: MantineTheme) => ({
-  outerBox: { paddingTop: theme.spacing.sm },
-  innerBox: { flex: 1 },
+  outerBox: {
+    paddingTop: theme.spacing.sm,
+  },
+  innerBox: {
+    flex: 1,
+  },
 })
 
 const NavUserSection = () => {
