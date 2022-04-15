@@ -14,7 +14,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@apollo/client@npm:3.5.10":
+"@apollo/client@npm:3.5.10, @apollo/client@npm:^3.5.10":
   version: 3.5.10
   resolution: "@apollo/client@npm:3.5.10"
   dependencies:
@@ -7252,6 +7252,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "api@workspace:api"
   dependencies:
+    "@apollo/client": ^3.5.10
     "@redwoodjs/api": ^1.0.1
     "@redwoodjs/graphql-server": ^1.0.1
     cross-undici-fetch: ^0.2.5

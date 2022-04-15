@@ -30,7 +30,7 @@ const sx = {
 
 const StoragePage = () => {
   const { width } = useViewportSize()
-  const { refetch } = useGoogleDriveAuthURL()
+  const { query } = useGoogleDriveAuthURL()
   const theme = useMantineTheme()
   const isMd = width >= theme.breakpoints.md
 
@@ -44,7 +44,7 @@ const StoragePage = () => {
       name: 'Google Drive',
       logo: <GoogleDriveSVG style={sx.svgLogo} />,
       onClick: () => {
-        refetch().then((data) => console.log(data))
+        query().then((data) => console.log(data))
       },
     },
     {

@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "dependencies": {
+    "@apollo/client": "^3.5.10",
     "@redwoodjs/api": "^1.0.1",
     "@redwoodjs/graphql-server": "^1.0.1",
     "cross-undici-fetch": "^0.2.5",
