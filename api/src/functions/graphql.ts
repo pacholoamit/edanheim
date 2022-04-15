@@ -15,6 +15,7 @@ export const handler = createGraphQLHandler({
   directives,
   sdls,
   services,
+  defaultError: 'Oops! Something went wrong, sorry about that',
   onException: () => {
     // Disconnect from your database with an unhandled exception.
     db.$disconnect()

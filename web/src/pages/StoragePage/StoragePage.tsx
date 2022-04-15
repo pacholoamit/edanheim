@@ -7,6 +7,7 @@ import {
   useMantineTheme,
 } from '@mantine/core'
 import { useViewportSize } from '@mantine/hooks'
+import useGoogleDriveAuthURL from 'src/hooks/useGoogleDriveAuthURL'
 import AwsS3SVG from 'public/assets/providers/aws.svg'
 import GoogleDriveSVG from 'public/assets/providers/google-drive.svg'
 import MicrosoftOneDriveSVG from 'public/assets/providers/microsoft-onedrive.svg'
@@ -27,29 +28,31 @@ const sx = {
   },
 }
 
-const storageProviders = [
-  {
-    name: 'AWS S3',
-    logo: <AwsS3SVG style={sx.svgLogo} />,
-    onClick: () => {},
-  },
-  {
-    name: 'Google Drive',
-    logo: <GoogleDriveSVG style={sx.svgLogo} />,
-    onClick: () => {},
-  },
-  {
-    name: 'MS OneDrive',
-    logo: <MicrosoftOneDriveSVG style={sx.svgLogo} />,
-    onClick: () => {},
-  },
-]
-
 const StoragePage = () => {
-  const theme = useMantineTheme()
   const { width } = useViewportSize()
-  const md = theme.breakpoints.md
-  const isMd = width >= md
+  const { refetch } = useGoogleDriveAuthURL()
+  const theme = useMantineTheme()
+  const isMd = width >= theme.breakpoints.md
+
+  const storageProviders = [
+    {
+      name: 'AWS S3',
+      logo: <AwsS3SVG style={sx.svgLogo} />,
+      onClick: () => {},
+    },
+    {
+      name: 'Google Drive',
+      logo: <GoogleDriveSVG style={sx.svgLogo} />,
+      onClick: () => {
+        refetch().then((data) => console.log(data))
+      },
+    },
+    {
+      name: 'MS OneDrive',
+      logo: <MicrosoftOneDriveSVG style={sx.svgLogo} />,
+      onClick: () => {},
+    },
+  ]
 
   return (
     <MediaQuery largerThan={'md'} styles={sx.mediaQuery}>

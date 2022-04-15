@@ -15,12 +15,13 @@ import AuthLayout from 'src/layouts/AuthLayout/AuthLayout'
 const Routes = () => {
   return (
     <Router>
+      {/* Common Routes */}
       <Route notfound page={NotFoundPage} />
-
+      {/* Routes that authenticated users are NOT supposed to access */}
       <Set wrap={AuthLayout}>
         <Route path="/auth" page={AuthPage} name="auth" />
       </Set>
-
+      {/* ROutes that authenticaed users are supposed to access */}
       <Private unauthenticated={'auth'}>
         <Set wrap={MainLayout}>
           <Route path="/" page={StoragePage} name="storage" />

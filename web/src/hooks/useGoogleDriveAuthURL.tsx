@@ -1,4 +1,6 @@
+import { showNotification } from '@mantine/notifications'
 import { useQuery } from '@redwoodjs/web'
+import { getGoogleDriveAuthUrl } from 'web/types/graphql'
 
 const GET_GOOGLE_DRIVE_AUTH_URL = gql`
   query getGoogleDriveAuthUrl {
@@ -7,9 +9,19 @@ const GET_GOOGLE_DRIVE_AUTH_URL = gql`
 `
 
 const useGoogleDriveAuthURL = () => {
-  const { data } = useQuery(GET_GOOGLE_DRIVE_AUTH_URL)
+  const { refetch } = useQuery<getGoogleDriveAuthUrl>(
+    GET_GOOGLE_DRIVE_AUTH_URL,
+    {
+      onError: (error) =>
+        showNotification({
+          title: 'Oops! Something went wrong',
+          message: error.message,
+          color: 'red',
+        }),
+    }
+  )
 
-  return data
+  return { refetch }
 }
 
 export default useGoogleDriveAuthURL

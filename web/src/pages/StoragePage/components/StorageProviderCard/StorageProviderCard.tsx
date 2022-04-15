@@ -21,8 +21,7 @@ const StorageProviderCard: React.FC<StorageProviderCardProps> = ({
 }) => {
   const theme = useMantineTheme()
   const { width } = useViewportSize()
-  const md = theme.breakpoints.md
-  const order = width >= md ? 3 : 4
+  const order = width >= theme.breakpoints.md ? 3 : 4
 
   return (
     <Grid.Col xs={12} md={4}>

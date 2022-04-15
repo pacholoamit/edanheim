@@ -4,6 +4,7 @@ import {
   ColorSchemeProvider,
   ColorScheme,
 } from '@mantine/core'
+import { NotificationsProvider } from '@mantine/notifications'
 
 const ThemeProvider: React.FC = ({ children }) => {
   const [colorScheme, setColorScheme] = React.useState<ColorScheme>('light')
@@ -25,9 +26,11 @@ const ThemeProvider: React.FC = ({ children }) => {
       colorScheme={colorScheme}
       toggleColorScheme={toggleColorScheme}
     >
-      <MantineProvider theme={mantineTheme} withNormalizeCSS withGlobalStyles>
-        {children}
-      </MantineProvider>
+      <NotificationsProvider>
+        <MantineProvider theme={mantineTheme} withNormalizeCSS withGlobalStyles>
+          {children}
+        </MantineProvider>
+      </NotificationsProvider>
     </ColorSchemeProvider>
   )
 }
