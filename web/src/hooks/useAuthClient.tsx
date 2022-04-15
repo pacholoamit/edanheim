@@ -1,5 +1,7 @@
 import { showNotification } from '@mantine/notifications'
 import { useAuth } from '@redwoodjs/auth'
+import { useMutation } from '@redwoodjs/web'
+import { CREATE_USER } from 'src/graphql/mutations'
 
 interface OAuthLoginInput {
   provider: 'github' | 'google'
@@ -7,7 +9,8 @@ interface OAuthLoginInput {
 }
 
 const useAuthClient = () => {
-  const { logIn } = useAuth()
+  const { logIn, currentUser } = useAuth()
+  const [createUser, { data }] = useMutation(CREATE_USER)
 
   const OAuthLogin = async ({ provider, scopes }: OAuthLoginInput) => {
     try {
@@ -25,8 +28,23 @@ const useAuthClient = () => {
     }
   }
 
+  const validateUser = () => {
+    return currentUser
+    // const { email, name, picture } = data
+    // const user = { email, name, picture }
+    // createUser({
+    //   variables: {
+    //     input: {
+    //       ...user,
+    //     },
+    //   },
+    // })
+  }
+
   return {
     OAuthLogin,
+    validateUser,
+    currentUser,
   }
 }
 

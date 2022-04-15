@@ -12,6 +12,7 @@ import AwsS3SVG from 'public/assets/providers/aws.svg'
 import GoogleDriveSVG from 'public/assets/providers/google-drive.svg'
 import MicrosoftOneDriveSVG from 'public/assets/providers/microsoft-onedrive.svg'
 import StorageProviderCard from 'src/pages/StoragePage/components/StorageProviderCard/StorageProviderCard'
+import useAuthClient from 'src/hooks/useAuthClient'
 
 const sx = {
   mediaQuery: {
@@ -31,9 +32,11 @@ const sx = {
 const StoragePage = () => {
   const { width } = useViewportSize()
   const { query } = useGoogleDriveAuthURL()
+  const { validateUser } = useAuthClient()
   const theme = useMantineTheme()
   const isMd = width >= theme.breakpoints.md
 
+  console.log(validateUser())
   const storageProviders = [
     {
       name: 'AWS S3',
