@@ -15,19 +15,30 @@ import {
 } from '@mantine/core'
 
 const sx = {
-  center: { height: '100vh', marginTop: '20px', marginBottom: '16px' },
-  stack: { width: '80vw', maxWidth: '300px' },
+  center: {
+    height: '100vh',
+    marginTop: '20px',
+    marginBottom: '16px',
+  },
+  stack: {
+    width: '80vw',
+    maxWidth: '300px',
+  },
+  text: {
+    cursor: 'pointer',
+  },
 }
 
 const AuthPage = () => {
   const [value, toggle] = useToggle('Sign in!', ['Sign up!', 'Sign in!'])
   const isSignIn = value === 'Sign in!'
   const bottomText = isSignIn ? 'Need an account?' : 'Already have an account?'
+  const bottomLink = isSignIn ? 'Sign up!' : 'Sign in!'
   const onClick = () => toggle()
 
   return (
-    <Center style={sx.center}>
-      <Stack justify={'center'} align="stretch" style={sx.stack}>
+    <Center sx={sx.center}>
+      <Stack justify={'center'} align="stretch" sx={sx.stack}>
         {/* Edanheim Logo */}
         <Image src={edanheimLogo} fit="contain" height={200} alt="logo" />
         {/* Auth Title */}
@@ -45,12 +56,8 @@ const AuthPage = () => {
         <Center>
           <Group spacing={'xs'}>
             <Text>{bottomText}</Text>
-            <Text
-              variant="link"
-              style={{ cursor: 'pointer' }}
-              onClick={onClick}
-            >
-              {value}
+            <Text variant="link" sx={sx.text} onClick={onClick}>
+              {bottomLink}
             </Text>
           </Group>
         </Center>
