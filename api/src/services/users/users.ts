@@ -1,4 +1,5 @@
 import type { Prisma } from '@prisma/client'
+import type { ResolverArgs } from '@redwoodjs/graphql-server'
 
 import { db } from 'src/lib/db'
 
@@ -37,4 +38,9 @@ export const deleteUser = ({ id }: Prisma.UserWhereUniqueInput) => {
   return db.user.delete({
     where: { id },
   })
+}
+
+export const User = {
+  storage: (_obj, { root }: ResolverArgs<ReturnType<typeof user>>) =>
+    db.user.findUnique({ where: { id: root.id } }).storage(),
 }

@@ -1,23 +1,15 @@
+import useAuthClient from 'src/hooks/useAuthClient'
 import { Button } from '@mantine/core'
-import { useAuth } from '@redwoodjs/auth'
 import { BrandGithub, BrandGoogle } from 'tabler-icons-react'
 
 interface OAuthButtonProps {
   provider: 'github' | 'google'
+  scopes?: string
 }
-const OAuthButton: React.FC<OAuthButtonProps> = ({ provider }) => {
-  const { logIn } = useAuth()
+const OAuthButton: React.FC<OAuthButtonProps> = ({ provider, scopes }) => {
+  const { OAuthLogin } = useAuthClient()
 
-  const onClick = async () => {
-    try {
-      await logIn({
-        provider,
-        scopes: 'https://www.googleapis.com/auth/drive',
-      })
-    } catch (error) {
-      console.log(error.message)
-    }
-  }
+  const onClick = async () => await OAuthLogin({ provider, scopes })
 
   if (provider === 'github')
     return (
