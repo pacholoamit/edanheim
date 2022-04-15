@@ -1,5 +1,5 @@
 datasource db {
-  provider = "sqlite"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
@@ -12,7 +12,32 @@ generator client {
 // to create migrations for them and apply to your dev DB.
 
 model User {
-  id    Int     @id @default(autoincrement())
+  id    String    @id @unique
   email String  @unique
   name  String?
+  storage Storage[]
+}
+
+
+model Storage {
+  id   String    @id @unique @default(uuid())
+  Provider  StorageProvider
+  name  String
+  user  User @relation(fields: [userId], references: [id])
+  userId String
+  Credential Credential?
+}
+
+model Credential {
+  id   String    @id @unique @default(uuid())
+  accessToken String
+  storage Storage@relation(fields: [storageId], references: [id])
+  storageId String
+
+}
+
+enum StorageProvider {
+  AWS_S3
+  GOOGLE_DRIVE
+  MS_ONECLOUD
 }

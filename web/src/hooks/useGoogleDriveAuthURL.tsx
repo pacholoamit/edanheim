@@ -2,12 +2,7 @@ import { showNotification } from '@mantine/notifications'
 // import { useQuery } from '@redwoodjs/web'
 import { useLazyQuery, LazyQueryHookOptions } from '@apollo/client'
 import { getGoogleDriveAuthUrl } from 'web/types/graphql'
-
-const GET_GOOGLE_DRIVE_AUTH_URL = gql`
-  query getGoogleDriveAuthUrl {
-    getGoogleDriveAuthUrl
-  }
-`
+import { GET_GOOGLE_DRIVE_AUTH_URL } from 'src/graphql/queries'
 
 const options: LazyQueryHookOptions = {
   onError: (error) =>

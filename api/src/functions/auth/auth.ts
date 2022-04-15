@@ -25,19 +25,16 @@ export const handler = async (event: APIGatewayEvent, _: Context) => {
   if (!event.queryStringParameters.code) {
     throw new ValidationError('Query string parameter "code" is required.')
   }
-  try {
-    const { code } = event.queryStringParameters
-    const { tokens } = await authClient.getToken(code)
 
-    logger.info(tokens)
-    return {
-      statusCode: 301,
-      headers: {
-        Location: process.env.WEB_DOMAIN,
-      },
-    }
-  } catch (err) {
-    logger.error('Error in auth function', { err })
-    throw new Error(err.message)
+  const { code } = event.queryStringParameters
+  const { tokens } = await authClient.getToken(code)
+
+  logger.info(tokens)
+  console.log(tokens)
+  return {
+    statusCode: 301,
+    headers: {
+      Location: 'http://localhost:8910/',
+    },
   }
 }
