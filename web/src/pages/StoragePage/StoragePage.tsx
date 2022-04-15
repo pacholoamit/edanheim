@@ -1,4 +1,13 @@
-import { Grid, MediaQuery, Stack, Title, Card } from '@mantine/core'
+import {
+  Grid,
+  MediaQuery,
+  Stack,
+  Title,
+  Card,
+  Space,
+  useMantineTheme,
+} from '@mantine/core'
+import { useViewportSize } from '@mantine/hooks'
 import AwsS3SVG from 'public/assets/providers/aws.svg'
 import GoogleDriveSVG from 'public/assets/providers/google-drive.svg'
 import MicrosoftOneDriveSVG from 'public/assets/providers/microsoft-onedrive.svg'
@@ -38,10 +47,16 @@ const storageProviders = [
 ]
 
 const StoragePage = () => {
+  const theme = useMantineTheme()
+  const { width } = useViewportSize()
+  const md = theme.breakpoints.md
+  const isMd = width >= md
+
   return (
     <MediaQuery largerThan={'md'} styles={sx.mediaQuery}>
       <Stack sx={sx.stack} justify="center" align={'center'}>
         <Title>Add Storage Provider</Title>
+        {isMd && <Space h={'sm'} />}
         <Grid gutter={'xl'} justify="center" align={'center'}>
           {storageProviders.map((provider) => (
             <StorageProviderCard key={provider.name} {...provider} />
