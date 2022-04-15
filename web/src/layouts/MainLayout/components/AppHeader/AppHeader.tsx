@@ -19,6 +19,11 @@ const sx = {
   mediaQuery: {
     display: 'none',
   },
+  group: {
+    height: '100%',
+    marginLeft: '1rem',
+    marginRight: '1rem',
+  },
 }
 
 const AppHeader: React.FC<AppHeaderProps> = ({ opened, setOpened }) => {
@@ -26,8 +31,8 @@ const AppHeader: React.FC<AppHeaderProps> = ({ opened, setOpened }) => {
   const onClick = () => setOpened((o) => !o)
 
   return (
-    <Header height={72} p="md">
-      <Group position="apart" align={'center'}>
+    <Header height={62} p="xs">
+      <Group position="apart" align={'center'} sx={sx.group}>
         <MediaQuery largerThan="sm" styles={sx.mediaQuery}>
           <Burger
             opened={opened}
@@ -38,7 +43,7 @@ const AppHeader: React.FC<AppHeaderProps> = ({ opened, setOpened }) => {
           />
         </MediaQuery>
 
-        <Image src={edanheimLogo} fit="contain" height={48} />
+        <Image src={edanheimLogo} fit="contain" height={44} />
 
         <ColorSchemeToggle />
       </Group>

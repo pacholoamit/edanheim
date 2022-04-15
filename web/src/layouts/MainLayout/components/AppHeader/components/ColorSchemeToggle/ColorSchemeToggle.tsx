@@ -13,8 +13,9 @@ const ColorSchemeToggle = () => {
       color={color}
       onClick={onClick}
       title="Toggle color scheme"
+      size={'lg'}
     >
-      {isDark ? <Sun size={18} /> : <MoonStars size={18} />}
+      {isDark ? <Sun size={20} /> : <MoonStars size={20} />}
     </ActionIcon>
   )
 }

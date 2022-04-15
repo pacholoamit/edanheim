@@ -1,20 +1,20 @@
-import { Link, routes } from '@redwoodjs/router'
-import { MetaTags } from '@redwoodjs/web'
+import { Center, MediaQuery, Title } from '@mantine/core'
 
+const sx = {
+  mediaQuery: {
+    marginTop: '15rem',
+  },
+  center: {
+    marginTop: '1rem',
+  },
+}
 const StoragePage = () => {
   return (
-    <>
-      <MetaTags title="Storage" description="Storage page" />
-
-      <h1>StoragePage</h1>
-      <p>
-        Find me in <code>./web/src/pages/StoragePage/StoragePage.tsx</code>
-      </p>
-      <p>
-        My default route is named <code>storage</code>, link to me with `
-        <Link to={routes.storage()}>Storage</Link>`
-      </p>
-    </>
+    <MediaQuery largerThan={'sm'} styles={sx.mediaQuery}>
+      <Center sx={sx.center}>
+        <Title>Add Storage Provider</Title>
+      </Center>
+    </MediaQuery>
   )
 }
 
