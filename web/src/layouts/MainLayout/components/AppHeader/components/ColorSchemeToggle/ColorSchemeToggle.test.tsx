@@ -1,14 +1,14 @@
 import { render } from '@redwoodjs/testing/web'
 
-import DarkModeButton from './DarkModeButton'
+import ColorSchemeToggle from './ColorSchemeToggle'
 
 //   Improve this test with help from the Redwood Testing Doc:
 //    https://redwoodjs.com/docs/testing#testing-components
 
-describe('DarkModeButton', () => {
+describe('ColorSchemeToggle', () => {
   it('renders successfully', () => {
     expect(() => {
-      render(<DarkModeButton />)
+      render(<ColorSchemeToggle />)
     }).not.toThrow()
   })
 })

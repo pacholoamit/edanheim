@@ -1,3 +1,5 @@
+import ColorSchemeToggle from 'src/layouts/MainLayout/components/AppHeader/components/ColorSchemeToggle'
+
 import {
   useMantineTheme,
   Header,
@@ -7,10 +9,16 @@ import {
   Group,
 } from '@mantine/core'
 import { edanheimLogo } from 'src/constants'
-// import DarkModeButton from 'src/layouts/MainLayout/components/AppHeader/components/DarkModeButton'
+
 interface AppHeaderProps {
   opened: boolean
   setOpened: React.Dispatch<React.SetStateAction<boolean>>
+}
+
+const sx = {
+  mediaQuery: {
+    display: 'none',
+  },
 }
 
 const AppHeader: React.FC<AppHeaderProps> = ({ opened, setOpened }) => {
@@ -18,24 +26,22 @@ const AppHeader: React.FC<AppHeaderProps> = ({ opened, setOpened }) => {
   const onClick = () => setOpened((o) => !o)
 
   return (
-    <Header height={70} p="md">
-      <div style={{ display: 'flex', alignItems: 'center', height: '100%' }}>
-        <Group position="apart">
-          <Group>
-            <MediaQuery largerThan="sm" styles={{ display: 'none' }}>
-              <Burger
-                opened={opened}
-                onClick={onClick}
-                size="sm"
-                color={theme.colors.gray[6]}
-                mr="xl"
-              />
-            </MediaQuery>
+    <Header height={72} p="md">
+      <Group position="apart" align={'center'}>
+        <MediaQuery largerThan="sm" styles={sx.mediaQuery}>
+          <Burger
+            opened={opened}
+            onClick={onClick}
+            size="sm"
+            color={theme.colors.gray[6]}
+            mr="xl"
+          />
+        </MediaQuery>
 
-            <Image src={edanheimLogo} fit="contain" height={48} />
-          </Group>
-        </Group>
-      </div>
+        <Image src={edanheimLogo} fit="contain" height={48} />
+
+        <ColorSchemeToggle />
+      </Group>
     </Header>
   )
 }

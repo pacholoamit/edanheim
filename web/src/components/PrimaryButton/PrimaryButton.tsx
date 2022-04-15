@@ -15,8 +15,16 @@ const sx = (theme: MantineTheme) => ({
   },
 })
 
-const PrimaryButton: React.FC = ({ children }) => {
-  return <UnstyledButton sx={sx}>{children}</UnstyledButton>
+interface PrimaryButtonProps {
+  onClick?: () => void
+}
+
+const PrimaryButton: React.FC<PrimaryButtonProps> = ({ children, onClick }) => {
+  return (
+    <UnstyledButton sx={sx} onClick={onClick}>
+      {children}
+    </UnstyledButton>
+  )
 }
 
 export default PrimaryButton

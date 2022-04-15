@@ -1,6 +1,6 @@
 import PrimaryButton from 'src/components/PrimaryButton'
 
-import { Link, routes } from '@redwoodjs/router'
+import { navigate, routes } from '@redwoodjs/router'
 import { DefaultMantineColor, Group, ThemeIcon, Text } from '@mantine/core'
 import { Plus } from 'tabler-icons-react'
 
@@ -12,20 +12,19 @@ interface NavOptionProps {
 }
 
 const NavOption: React.FC<NavOptionProps> = ({ icon, color, label, route }) => {
+  const onClick = () => navigate(route)
   return (
-    <Link to={route}>
-      <PrimaryButton>
-        <Group>
-          <ThemeIcon color={color} variant="light">
-            {icon}
-          </ThemeIcon>
+    <PrimaryButton onClick={onClick}>
+      <Group>
+        <ThemeIcon color={color} variant="light">
+          {icon}
+        </ThemeIcon>
 
-          <Text size="sm" weight={600} sx={{ opacity: 0.8 }}>
-            {label}
-          </Text>
-        </Group>
-      </PrimaryButton>
-    </Link>
+        <Text size="sm" weight={600} sx={{ opacity: 0.8 }}>
+          {label}
+        </Text>
+      </Group>
+    </PrimaryButton>
   )
 }
 
