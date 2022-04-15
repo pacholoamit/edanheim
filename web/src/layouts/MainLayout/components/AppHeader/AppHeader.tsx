@@ -1,5 +1,5 @@
 import ColorSchemeToggle from 'src/layouts/MainLayout/components/AppHeader/components/ColorSchemeToggle'
-
+import SignOutButton from 'src/layouts/MainLayout/components/AppHeader/components/SignOutButton'
 import {
   useMantineTheme,
   Header,
@@ -45,7 +45,10 @@ const AppHeader: React.FC<AppHeaderProps> = ({ opened, setOpened }) => {
 
         <Image src={edanheimLogo} fit="contain" height={44} />
 
-        <ColorSchemeToggle />
+        <Group>
+          <ColorSchemeToggle />
+          <SignOutButton />
+        </Group>
       </Group>
     </Header>
   )

@@ -9,7 +9,7 @@ const ColorSchemeToggle = () => {
 
   return (
     <ActionIcon
-      variant="outline"
+      variant="light"
       color={color}
       onClick={onClick}
       title="Toggle color scheme"

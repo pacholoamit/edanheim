@@ -1,4 +1,3 @@
-import SignoutBtn from 'src/components/SignoutBtn'
 import useCurrentUser from 'src/hooks/useCurrentUser'
 import GoogleDriveFilesCell from 'src/components/GoogleDriveFilesCell'
 import { Space, Title } from '@mantine/core'
@@ -10,7 +9,7 @@ const HomePage = () => {
     <>
       <h1>HomePage</h1>
       <p>Welcome {user.name}</p>
-      <SignoutBtn />
+
       <Title>Files </Title>
       <Space h={'lg'} />
       <GoogleDriveFilesCell session={session} />
