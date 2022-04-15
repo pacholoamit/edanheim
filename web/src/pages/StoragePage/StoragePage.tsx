@@ -3,7 +3,6 @@ import {
   MediaQuery,
   Stack,
   Title,
-  Card,
   Space,
   useMantineTheme,
 } from '@mantine/core'
