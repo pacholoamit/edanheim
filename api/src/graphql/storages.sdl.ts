@@ -5,7 +5,9 @@ export const schema = gql`
     name: String!
     user: User!
     userId: String!
-    Credential: Credential
+    credential: Credential
+    createdAt: DateTime!
+    updatedAt: DateTime!
   }
 
   enum StorageProvider {

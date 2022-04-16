@@ -9,7 +9,14 @@ export const standard = defineScenario<Prisma.CredentialCreateArgs>({
           create: {
             Provider: 'AWS_S3',
             name: 'String',
-            user: { create: { id: 'String9653373', email: 'String8780611' } },
+            user: {
+              create: {
+                supabaseId: 'String6966539',
+                email: 'String779426',
+                createdAt: '2022-04-16T07:45:18Z',
+                updatedAt: '2022-04-16T07:45:18Z',
+              },
+            },
           },
         },
       },
@@ -21,7 +28,14 @@ export const standard = defineScenario<Prisma.CredentialCreateArgs>({
           create: {
             Provider: 'AWS_S3',
             name: 'String',
-            user: { create: { id: 'String9645192', email: 'String523990' } },
+            user: {
+              create: {
+                supabaseId: 'String6807136',
+                email: 'String9689903',
+                createdAt: '2022-04-16T07:45:18Z',
+                updatedAt: '2022-04-16T07:45:18Z',
+              },
+            },
           },
         },
       },

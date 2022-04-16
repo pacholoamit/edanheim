@@ -1,9 +1,12 @@
 export const schema = gql`
   type User {
     id: String!
+    supabaseId: String!
     email: String!
     name: String
     storage: [Storage]!
+    createdAt: DateTime!
+    updatedAt: DateTime!
   }
 
   type Query {
@@ -12,11 +15,13 @@ export const schema = gql`
   }
 
   input CreateUserInput {
+    supabaseId: String!
     email: String!
     name: String
   }
 
   input UpdateUserInput {
+    supabaseId: String
     email: String
     name: String
   }

@@ -4,6 +4,8 @@ export const schema = gql`
     accessToken: String!
     storage: Storage!
     storageId: String!
+    createdAt: DateTime!
+    updatedAt: DateTime!
   }
 
   type Query {

@@ -43,6 +43,6 @@ export const deleteStorage = ({ id }: Prisma.StorageWhereUniqueInput) => {
 export const Storage = {
   user: (_obj, { root }: ResolverArgs<ReturnType<typeof storage>>) =>
     db.storage.findUnique({ where: { id: root.id } }).user(),
-  Credential: (_obj, { root }: ResolverArgs<ReturnType<typeof storage>>) =>
-    db.storage.findUnique({ where: { id: root.id } }).Credential(),
+  credential: (_obj, { root }: ResolverArgs<ReturnType<typeof storage>>) =>
+    db.storage.findUnique({ where: { id: root.id } }).credential(),
 }

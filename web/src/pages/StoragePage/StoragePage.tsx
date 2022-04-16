@@ -1,9 +1,6 @@
 import useGoogleDriveAuthURL from 'src/hooks/useGoogleDriveAuthURL'
-// import AwsS3SVG from 'public/assets/providers/aws.svg'
-// import GoogleDriveSVG from 'public/assets/providers/google-drive.svg'
-// import MicrosoftOneDriveSVG from 'public/assets/providers/microsoft-onedrive.svg'
-import { AwsS3SVG, GoogleDriveSVG, MicrosoftOneDriveSVG } from 'src/constants'
 import StorageProviderCard from 'src/pages/StoragePage/components/StorageProviderCard'
+import { AwsS3SVG, GoogleDriveSVG, MicrosoftOneDriveSVG } from 'src/constants'
 import {
   Grid,
   MediaQuery,
