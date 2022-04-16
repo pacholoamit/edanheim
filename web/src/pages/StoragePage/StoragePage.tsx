@@ -29,7 +29,6 @@ const sx = {
 const StoragePage = () => {
   const { width } = useViewportSize()
   const { getGoogleAuthUrl } = useAuthClient()
-
   const theme = useMantineTheme()
   const isMd = width >= theme.breakpoints.md
 
