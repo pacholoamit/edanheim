@@ -1,7 +1,7 @@
-import useGoogleDriveAuthURL from 'src/hooks/useGoogleDriveAuthURL'
+import useAuthClient from 'src/hooks/useAuthClient'
 import StorageProviderCard from 'src/pages/StoragePage/components/StorageProviderCard'
-import UserCell from 'src/components/UserCell'
 import { AwsS3SVG, GoogleDriveSVG, MicrosoftOneDriveSVG } from 'src/constants'
+import { useViewportSize } from '@mantine/hooks'
 import {
   Grid,
   MediaQuery,
@@ -10,7 +10,6 @@ import {
   Space,
   useMantineTheme,
 } from '@mantine/core'
-import { useViewportSize } from '@mantine/hooks'
 
 const sx = {
   mediaQuery: {
@@ -29,7 +28,7 @@ const sx = {
 
 const StoragePage = () => {
   const { width } = useViewportSize()
-  const { query } = useGoogleDriveAuthURL()
+  const { getGoogleAuthUrl } = useAuthClient()
 
   const theme = useMantineTheme()
   const isMd = width >= theme.breakpoints.md
@@ -44,7 +43,7 @@ const StoragePage = () => {
       name: 'Google Drive',
       logo: <GoogleDriveSVG style={sx.svgLogo} />,
       onClick: () => {
-        query().then(({ data }) =>
+        getGoogleAuthUrl().then(({ data }) =>
           window.open(data.getGoogleDriveAuthUrl, '_self')
         )
       },
@@ -60,7 +59,6 @@ const StoragePage = () => {
     <MediaQuery largerThan={'md'} styles={sx.mediaQuery}>
       <Stack sx={sx.stack} justify="center" align={'center'}>
         <Title>Add Storage Provider</Title>
-        <UserCell supabaseId="afd3ba12-b8ff-4624-aa38-97d3c2aee2a7" />
         {isMd && <Space h={'sm'} />}
         <Grid gutter={'xl'} justify="center" align={'center'}>
           {storageProviders.map((provider) => (

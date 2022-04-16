@@ -1,5 +1,5 @@
 import PrimaryButton from 'src/components/PrimaryButton'
-import useCurrentUser from 'src/hooks/useCurrentUser'
+import useAuthClient from 'src/hooks/useAuthClient'
 
 import {
   Avatar,
@@ -20,7 +20,7 @@ const sx = (theme: MantineTheme) => ({
 })
 
 const NavUserSection = () => {
-  const { user } = useCurrentUser()
+  const { user } = useAuthClient()
   const theme = useMantineTheme()
 
   return (
