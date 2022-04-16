@@ -59,7 +59,6 @@ const useAuthClient = () => {
   return {
     OAuthLogin,
     user,
-
     getGoogleAuthUrl,
   }
 }

@@ -11,13 +11,14 @@ interface UserLoaderProps {
 const UserLoader: React.FC<UserLoaderProps> = ({ children }) => {
   const { user } = useAuthClient()
   const [createUser] = useMutation<CreateUserMutation>(CREATE_USER)
-  const { error } = useQuery<FindUserQuery>(FIND_USER, {
+  const { data, loading } = useQuery<FindUserQuery>(FIND_USER, {
     variables: { supabaseId: user.id },
   })
 
+  console.log(data)
   React.useEffect(() => {
     // If user does not exist, create one
-    if (error)
+    if (!loading && !data.user) {
       createUser({
         variables: {
           input: {
@@ -27,6 +28,7 @@ const UserLoader: React.FC<UserLoaderProps> = ({ children }) => {
           },
         },
       })
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
