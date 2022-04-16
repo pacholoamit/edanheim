@@ -22,6 +22,7 @@ import { authClient } from 'src/lib/google'
 export const handler = async (event: APIGatewayEvent, _: Context) => {
   logger.info('Invoked auth function')
 
+  // Google Auth callback
   if (!event.queryStringParameters.code) {
     throw new ValidationError('Query string parameter "code" is required.')
   }
@@ -30,11 +31,11 @@ export const handler = async (event: APIGatewayEvent, _: Context) => {
   const { tokens } = await authClient.getToken(code)
 
   logger.info(tokens)
-  console.log(tokens)
+
   return {
     statusCode: 301,
     headers: {
-      Location: 'http://localhost:8910/',
+      Location: process.env.WEB_DOMAIN,
     },
   }
 }
