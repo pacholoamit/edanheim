@@ -1,3 +1,9 @@
+import useGoogleDriveAuthURL from 'src/hooks/useGoogleDriveAuthURL'
+// import AwsS3SVG from 'public/assets/providers/aws.svg'
+// import GoogleDriveSVG from 'public/assets/providers/google-drive.svg'
+// import MicrosoftOneDriveSVG from 'public/assets/providers/microsoft-onedrive.svg'
+import { AwsS3SVG, GoogleDriveSVG, MicrosoftOneDriveSVG } from 'src/constants'
+import StorageProviderCard from 'src/pages/StoragePage/components/StorageProviderCard'
 import {
   Grid,
   MediaQuery,
@@ -7,12 +13,6 @@ import {
   useMantineTheme,
 } from '@mantine/core'
 import { useViewportSize } from '@mantine/hooks'
-import useGoogleDriveAuthURL from 'src/hooks/useGoogleDriveAuthURL'
-import AwsS3SVG from 'public/assets/providers/aws.svg'
-import GoogleDriveSVG from 'public/assets/providers/google-drive.svg'
-import MicrosoftOneDriveSVG from 'public/assets/providers/microsoft-onedrive.svg'
-import StorageProviderCard from 'src/pages/StoragePage/components/StorageProviderCard/StorageProviderCard'
-import useAuthClient from 'src/hooks/useAuthClient'
 
 const sx = {
   mediaQuery: {
@@ -32,11 +32,10 @@ const sx = {
 const StoragePage = () => {
   const { width } = useViewportSize()
   const { query } = useGoogleDriveAuthURL()
-  const { validateUser } = useAuthClient()
+
   const theme = useMantineTheme()
   const isMd = width >= theme.breakpoints.md
 
-  console.log(validateUser())
   const storageProviders = [
     {
       name: 'AWS S3',
@@ -47,10 +46,9 @@ const StoragePage = () => {
       name: 'Google Drive',
       logo: <GoogleDriveSVG style={sx.svgLogo} />,
       onClick: () => {
-        query().then(({ data }) => {
-          console.log(data.getGoogleDriveAuthUrl)
-          window.open(data.getGoogleDriveAuthUrl)
-        })
+        query().then(({ data }) =>
+          window.open(data.getGoogleDriveAuthUrl, '_self')
+        )
       },
     },
     {

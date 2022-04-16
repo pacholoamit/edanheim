@@ -12,23 +12,24 @@ const useAuthClient = () => {
   const { logIn, currentUser } = useAuth()
   const [createUser, { data }] = useMutation(CREATE_USER)
 
+  // Login for Oauth Providers
   const OAuthLogin = async ({ provider, scopes }: OAuthLoginInput) => {
     try {
-      const userData = await logIn({
+      await logIn({
         provider,
         scopes,
       })
-      console.log({ userData })
     } catch (error) {
       showNotification({
         title: 'Oops! Something went wrong.',
         message: 'Please try again later',
       })
-      console.log(error.message)
     }
   }
 
-  const validateUser = () => {
+  // Create user if not exists in db
+  // Update user if exists in db
+  const updateUser = () => {
     return currentUser
     // const { email, name, picture } = data
     // const user = { email, name, picture }
@@ -43,8 +44,7 @@ const useAuthClient = () => {
 
   return {
     OAuthLogin,
-    validateUser,
-    currentUser,
+    updateUser,
   }
 }
 
