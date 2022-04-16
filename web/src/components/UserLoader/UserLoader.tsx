@@ -15,10 +15,9 @@ const UserLoader: React.FC<UserLoaderProps> = ({ children }) => {
     variables: { supabaseId: user.id },
   })
 
-  console.log(data)
   React.useEffect(() => {
     // If user does not exist, create one
-    if (!loading && !data.user) {
+    if (!loading && data.user === null) {
       createUser({
         variables: {
           input: {
@@ -29,8 +28,7 @@ const UserLoader: React.FC<UserLoaderProps> = ({ children }) => {
         },
       })
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [data])
 
   return <>{children}</>
 }
