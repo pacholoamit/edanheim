@@ -1,5 +1,6 @@
 import useGoogleDriveAuthURL from 'src/hooks/useGoogleDriveAuthURL'
 import StorageProviderCard from 'src/pages/StoragePage/components/StorageProviderCard'
+import UserCell from 'src/components/UserCell'
 import { AwsS3SVG, GoogleDriveSVG, MicrosoftOneDriveSVG } from 'src/constants'
 import {
   Grid,
@@ -59,6 +60,7 @@ const StoragePage = () => {
     <MediaQuery largerThan={'md'} styles={sx.mediaQuery}>
       <Stack sx={sx.stack} justify="center" align={'center'}>
         <Title>Add Storage Provider</Title>
+        <UserCell supabaseId="afd3ba12-b8ff-4624-aa38-97d3c2aee2a7" />
         {isMd && <Space h={'sm'} />}
         <Grid gutter={'xl'} justify="center" align={'center'}>
           {storageProviders.map((provider) => (
