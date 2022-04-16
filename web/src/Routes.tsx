@@ -17,12 +17,14 @@ const Routes = () => {
     <Router>
       {/* Common Routes */}
       <Route notfound page={NotFoundPage} />
+
       {/* Routes that authenticated users are NOT supposed to access */}
       <Set wrap={AuthLayout}>
         <Route path="/auth" page={AuthPage} name="auth" />
       </Set>
       {/* ROutes that authenticaed users are supposed to access */}
       <Private unauthenticated={'auth'}>
+        <Route path="/google-auth-callback" page={GoogleAuthCallbackPage} name="googleAuthCallback" />
         <Set wrap={MainLayout}>
           <Route path="/" page={StoragePage} name="storage" />
         </Set>
