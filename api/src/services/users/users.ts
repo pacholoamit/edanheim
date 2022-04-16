@@ -43,4 +43,6 @@ export const deleteUser = ({ id }: Prisma.UserWhereUniqueInput) => {
 export const User = {
   storage: (_obj, { root }: ResolverArgs<ReturnType<typeof user>>) =>
     db.user.findUnique({ where: { id: root.id } }).storage(),
+  credentials: (_obj, { root }: ResolverArgs<ReturnType<typeof user>>) =>
+    db.user.findUnique({ where: { id: root.id } }).credentials(),
 }

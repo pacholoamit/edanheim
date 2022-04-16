@@ -5,6 +5,7 @@ export const schema = gql`
     email: String!
     name: String
     storage: [Storage]!
+    credentials: [Credential]!
     createdAt: DateTime!
     updatedAt: DateTime!
   }

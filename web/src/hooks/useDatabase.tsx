@@ -11,15 +11,14 @@ const useDatabase = () => {
 
   // Create user if not exists in db
   // Update user if exists in db
+
   const createOrUpdateUser = () => {
     const { id, email, name } = user
-    console.log({
-      supabaseId: id,
-    })
+
     createUser({
       variables: {
         input: {
-          id,
+          supabaseId: id,
           email,
           name,
         },

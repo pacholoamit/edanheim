@@ -9,24 +9,26 @@ generator client {
 }
 
 model User {
-  id         String    @id @unique @default(uuid()) // Prisma ID
-  supabaseId String    @unique // Supabase ID
-  email      String    @unique
-  name       String?
-  storage    Storage[]
-  createdAt  DateTime // Supabase createdAt
-  updatedAt  DateTime // Supabase updatedAt
+  id          String       @id @unique @default(uuid()) // Prisma ID - DO NOT USE
+  supabaseId  String       @unique // Supabase ID
+  email       String       @unique
+  name        String?
+  storage     Storage[]
+  credentials Credential[]
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+
 }
 
 model Storage {
   id         String          @id @unique @default(uuid())
   Provider   StorageProvider
   name       String
-  user       User            @relation(fields: [userId], references: [id])
+  user       User            @relation(fields: [userId], references: [supabaseId])
   userId     String
   credential Credential?
   createdAt  DateTime        @default(now())
-  updatedAt  DateTime        @default(now())
+  updatedAt  DateTime        @updatedAt
 }
 
 model Credential {
@@ -34,8 +36,10 @@ model Credential {
   accessToken String
   storage     Storage  @relation(fields: [storageId], references: [id])
   storageId   String   @unique
+  user        User     @relation(fields: [userId], references: [supabaseId])
+  userId      String
   createdAt   DateTime @default(now())
-  updatedAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 
 }
 

@@ -4,6 +4,8 @@ export const schema = gql`
     accessToken: String!
     storage: Storage!
     storageId: String!
+    user: User!
+    userId: String!
     createdAt: DateTime!
     updatedAt: DateTime!
   }
@@ -16,11 +18,13 @@ export const schema = gql`
   input CreateCredentialInput {
     accessToken: String!
     storageId: String!
+    userId: String!
   }
 
   input UpdateCredentialInput {
     accessToken: String
     storageId: String
+    userId: String
   }
 
   type Mutation {

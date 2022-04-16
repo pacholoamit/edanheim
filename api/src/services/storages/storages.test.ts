@@ -32,12 +32,14 @@ describe('storages', () => {
         Provider: 'AWS_S3',
         name: 'String',
         userId: scenario.storage.two.userId,
+        updatedAt: '2022-04-16T08:44:44Z',
       },
     })
 
     expect(result.Provider).toEqual('AWS_S3')
     expect(result.name).toEqual('String')
     expect(result.userId).toEqual(scenario.storage.two.userId)
+    expect(result.updatedAt).toEqual('2022-04-16T08:44:44Z')
   })
 
   scenario('updates a storage', async (scenario: StandardScenario) => {

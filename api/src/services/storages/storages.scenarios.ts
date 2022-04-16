@@ -6,12 +6,12 @@ export const standard = defineScenario<Prisma.StorageCreateArgs>({
       data: {
         Provider: 'AWS_S3',
         name: 'String',
+        updatedAt: '2022-04-16T08:44:44Z',
         user: {
           create: {
-            supabaseId: 'String392429',
-            email: 'String2792876',
-            createdAt: '2022-04-16T07:45:03Z',
-            updatedAt: '2022-04-16T07:45:03Z',
+            supabaseId: 'String9742643',
+            email: 'String2188275',
+            updatedAt: '2022-04-16T08:44:44Z',
           },
         },
       },
@@ -20,12 +20,12 @@ export const standard = defineScenario<Prisma.StorageCreateArgs>({
       data: {
         Provider: 'AWS_S3',
         name: 'String',
+        updatedAt: '2022-04-16T08:44:44Z',
         user: {
           create: {
-            supabaseId: 'String8872024',
-            email: 'String1731386',
-            createdAt: '2022-04-16T07:45:03Z',
-            updatedAt: '2022-04-16T07:45:03Z',
+            supabaseId: 'String7781336',
+            email: 'String727460',
+            updatedAt: '2022-04-16T08:44:44Z',
           },
         },
       },

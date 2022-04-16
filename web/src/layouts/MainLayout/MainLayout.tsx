@@ -17,7 +17,9 @@ const MainLayout: React.FC = ({ children }) => {
   const { createOrUpdateUser } = useDatabase()
   const [opened, setOpened] = React.useState<boolean>(false)
 
-  React.useEffect(() => createOrUpdateUser(), [createOrUpdateUser])
+  React.useEffect(() => {
+    createOrUpdateUser()
+  }, [])
   return (
     <AppShell
       padding="md"

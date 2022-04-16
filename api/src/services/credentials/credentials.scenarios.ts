@@ -5,18 +5,26 @@ export const standard = defineScenario<Prisma.CredentialCreateArgs>({
     one: {
       data: {
         accessToken: 'String',
+        updatedAt: '2022-04-16T08:45:01Z',
         storage: {
           create: {
             Provider: 'AWS_S3',
             name: 'String',
+            updatedAt: '2022-04-16T08:45:01Z',
             user: {
               create: {
-                supabaseId: 'String6966539',
-                email: 'String779426',
-                createdAt: '2022-04-16T07:45:18Z',
-                updatedAt: '2022-04-16T07:45:18Z',
+                supabaseId: 'String8099031',
+                email: 'String606353',
+                updatedAt: '2022-04-16T08:45:01Z',
               },
             },
+          },
+        },
+        user: {
+          create: {
+            supabaseId: 'String8215370',
+            email: 'String6775531',
+            updatedAt: '2022-04-16T08:45:01Z',
           },
         },
       },
@@ -24,18 +32,26 @@ export const standard = defineScenario<Prisma.CredentialCreateArgs>({
     two: {
       data: {
         accessToken: 'String',
+        updatedAt: '2022-04-16T08:45:01Z',
         storage: {
           create: {
             Provider: 'AWS_S3',
             name: 'String',
+            updatedAt: '2022-04-16T08:45:01Z',
             user: {
               create: {
-                supabaseId: 'String6807136',
-                email: 'String9689903',
-                createdAt: '2022-04-16T07:45:18Z',
-                updatedAt: '2022-04-16T07:45:18Z',
+                supabaseId: 'String9202987',
+                email: 'String2310183',
+                updatedAt: '2022-04-16T08:45:01Z',
               },
             },
+          },
+        },
+        user: {
+          create: {
+            supabaseId: 'String1067404',
+            email: 'String3686667',
+            updatedAt: '2022-04-16T08:45:01Z',
           },
         },
       },

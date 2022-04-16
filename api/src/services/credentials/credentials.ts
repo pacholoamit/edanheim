@@ -43,4 +43,6 @@ export const deleteCredential = ({ id }: Prisma.CredentialWhereUniqueInput) => {
 export const Credential = {
   storage: (_obj, { root }: ResolverArgs<ReturnType<typeof credential>>) =>
     db.credential.findUnique({ where: { id: root.id } }).storage(),
+  user: (_obj, { root }: ResolverArgs<ReturnType<typeof credential>>) =>
+    db.credential.findUnique({ where: { id: root.id } }).user(),
 }
