@@ -6,6 +6,10 @@ interface UserLoaderProps {
   children: React.ReactNode
 }
 
+/**
+ *
+ * Syncs user to db
+ */
 const UserLoader: React.FC<UserLoaderProps> = ({ children }) => {
   const [syncUser, { data }] = useMutation<SyncUserMutation>(SYNC_USER)
 

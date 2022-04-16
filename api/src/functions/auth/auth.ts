@@ -19,6 +19,8 @@ import { authClient } from 'src/lib/google'
  * @param { Context } context - contains information about the invocation,
  * function, and execution environment.
  */
+
+// TODO: Pass context to app
 export const handler = async (event: APIGatewayEvent, _: Context) => {
   logger.info('Invoked auth function')
 
@@ -29,8 +31,6 @@ export const handler = async (event: APIGatewayEvent, _: Context) => {
 
   const { code } = event.queryStringParameters
   const { tokens } = await authClient.getToken(code)
-
-  logger.info(tokens)
 
   return {
     statusCode: 301,
