@@ -20,7 +20,7 @@ import { authClient } from 'src/lib/google'
  * function, and execution environment.
  */
 
-// TODO: Pass context to app
+// TODO: Pass DELETE THIS AND MAKE THIS BETTER
 export const handler = async (event: APIGatewayEvent, _: Context) => {
   logger.info('Invoked auth function')
 
@@ -32,10 +32,14 @@ export const handler = async (event: APIGatewayEvent, _: Context) => {
   const { code } = event.queryStringParameters
   const { tokens } = await authClient.getToken(code)
 
+  // return {
+  //   statusCode: 301,
+  //   headers: {
+  //     Location: process.env.WEB_DOMAIN,
+  //   },
+  // }
   return {
-    statusCode: 301,
-    headers: {
-      Location: process.env.WEB_DOMAIN,
-    },
+    statusCode: 200,
+    body: JSON.stringify({ tokens }),
   }
 }
