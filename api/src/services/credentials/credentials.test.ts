@@ -33,16 +33,14 @@ describe('credentials', () => {
     const result = await createCredential({
       input: {
         accessToken: 'String',
-        storageId: scenario.credential.two.storageId,
         userId: scenario.credential.two.userId,
-        updatedAt: '2022-04-17T08:31:14Z',
+        updatedAt: '2022-04-17T12:01:36Z',
       },
     })
 
     expect(result.accessToken).toEqual('String')
-    expect(result.storageId).toEqual(scenario.credential.two.storageId)
     expect(result.userId).toEqual(scenario.credential.two.userId)
-    expect(result.updatedAt).toEqual('2022-04-17T08:31:14Z')
+    expect(result.updatedAt).toEqual('2022-04-17T12:01:36Z')
   })
 
   scenario('updates a credential', async (scenario: StandardScenario) => {

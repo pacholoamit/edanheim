@@ -33,25 +33,7 @@ export const addNewGoogleDrive = async ({
 
     logger.debug({ custom: { userInDb } }, `Found user ${userInDb.name}`)
 
-    /** Create new Storage then bind to user */
-    const storage = await db.storage.create({
-      data: {
-        name: 'Google Drive', //TODO: Make dynamic later OR Prompt after credential
-        provider: 'GOOGLE_DRIVE',
-        user: {
-          connect: {
-            supabaseId: userInDb.supabaseId,
-          },
-        },
-      },
-    })
-
-    logger.debug(
-      { custom: { storage } },
-      `Created new storage for user ${userInDb.name}`
-    )
-
-    /** Create new credential then bind to user & storage */
+    /** Create new credential then bind to user */
     const credential = await db.credential.create({
       data: {
         accessToken: tokens.access_token,
@@ -62,11 +44,6 @@ export const addNewGoogleDrive = async ({
             supabaseId: userInDb.supabaseId,
           },
         },
-        storage: {
-          connect: {
-            id: storage.id,
-          },
-        },
       },
     })
     logger.debug(
@@ -74,7 +51,7 @@ export const addNewGoogleDrive = async ({
       `Created credential for ${userInDb.name}`
     )
 
-    const message = `Successfully added Google drive storage for ${currentUser.email} `
+    const message = `Successfully added Google drive credentials for ${currentUser.email} `
     logger.info(message)
 
     return {

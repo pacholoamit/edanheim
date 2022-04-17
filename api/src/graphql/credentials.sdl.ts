@@ -6,10 +6,10 @@ export const schema = gql`
     scope: String
     tokenType: String
     expiryDate: DateTime
-    storage: Storage!
-    storageId: String!
     user: User!
     userId: String!
+    storage: Storage
+    storageId: String
     createdAt: DateTime!
     updatedAt: DateTime!
   }
@@ -25,8 +25,8 @@ export const schema = gql`
     scope: String
     tokenType: String
     expiryDate: DateTime
-    storageId: String!
     userId: String!
+    storageId: String
   }
 
   input UpdateCredentialInput {
@@ -35,8 +35,8 @@ export const schema = gql`
     scope: String
     tokenType: String
     expiryDate: DateTime
-    storageId: String
     userId: String
+    storageId: String
   }
 
   type Mutation {
