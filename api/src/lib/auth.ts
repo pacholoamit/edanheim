@@ -4,8 +4,26 @@ import { AuthenticationError, ForbiddenError } from '@redwoodjs/graphql-server'
 /**
  * Represents the user attributes returned by the decoding the
  * Authentication provider's JWT together with an optional list of roles.
+ *
+ * * Opinionated to adopt supabase user type
  */
 type RedwoodUser = Record<string, unknown> & {
+  aud: string
+  exp: number
+  sub: string // Supabase UID
+  email: string
+  phone?: string
+  user_metadata?: {
+    avatar_url: string
+    email: string
+    full_name: string
+    iss: string
+    name: string
+    picture: string
+    provider_id: string
+    sub: string
+  }
+  role: string
   roles?: string[]
 }
 

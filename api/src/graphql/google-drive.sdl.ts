@@ -15,13 +15,20 @@ export const schema = gql`
     token_type: String
   }
 
-  input GoogleOauthCallbackResult {
-    code: String
-    scope: String
-  }
-
   type Query {
     googleDriveFiles(session: WebSession!): [GoogleDriveFile!]! @requireAuth
     getGoogleDriveAuthUrl: String! @requireAuth
+  }
+
+  input AddNewGoogleDriveInput {
+    code: String!
+  }
+
+  type AddNewGoogleDriveResult {
+    message: String!
+  }
+  type Mutation {
+    addNewGoogleDrive(input: AddNewGoogleDriveInput): AddNewGoogleDriveResult
+      @requireAuth
   }
 `
