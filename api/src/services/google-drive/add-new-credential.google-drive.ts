@@ -2,10 +2,10 @@ import {
   AddNewGoogleDriveCredentialInput,
   AddNewGoogleDriveCredentialResult,
 } from 'api/types/graphql'
-
 import { authClient } from 'src/lib/google'
 import { logger } from 'src/lib/logger'
 import { db } from 'src/lib/db'
+import { encrypt } from 'src/lib/crypto'
 
 interface AddNewGoogleDriveContext {
   input: AddNewGoogleDriveCredentialInput
@@ -36,8 +36,8 @@ export const addNewGoogleDriveCredential = async ({
     /** Create new credential then bind to user */
     const credential = await db.credential.create({
       data: {
-        accessToken: tokens.access_token,
-        refreshToken: tokens.refresh_token,
+        accessToken: encrypt(tokens.access_token),
+        refreshToken: encrypt(tokens.refresh_token),
         scope: tokens.scope,
         user: {
           connect: {

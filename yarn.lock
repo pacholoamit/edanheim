@@ -5711,6 +5711,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/crypto-js@npm:^4.1.1":
+  version: 4.1.1
+  resolution: "@types/crypto-js@npm:4.1.1"
+  checksum: e53b712c5d3b72d19c67a06c8bbaaafd989d78f71a2168f1376c8fb84d5744e5166b58d79528a124645e13f13fe4d2c97ee8f03d649ef913e93ca6b8cee41370
+  languageName: node
+  linkType: hard
+
 "@types/debug@npm:4.1.7":
   version: 4.1.7
   resolution: "@types/debug@npm:4.1.7"
@@ -7255,7 +7262,9 @@ __metadata:
     "@apollo/client": ^3.5.10
     "@redwoodjs/api": ^1.0.1
     "@redwoodjs/graphql-server": ^1.0.1
+    "@types/crypto-js": ^4.1.1
     cross-undici-fetch: ^0.2.5
+    crypto-js: ^4.1.1
     googleapis: ^100.0.0
   languageName: unknown
   linkType: soft
@@ -9946,7 +9955,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"crypto-js@npm:4.1.1":
+"crypto-js@npm:4.1.1, crypto-js@npm:^4.1.1":
   version: 4.1.1
   resolution: "crypto-js@npm:4.1.1"
   checksum: 50cc66a35f2738171d9a6d80c85ba7d00cb6440b756db035ba9ccd03032c0a803029a62969ecd4c844106c980af87687c64b204dd967989379c4f354fb482d37

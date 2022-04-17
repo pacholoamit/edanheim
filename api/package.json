@@ -6,7 +6,9 @@
     "@apollo/client": "^3.5.10",
     "@redwoodjs/api": "^1.0.1",
     "@redwoodjs/graphql-server": "^1.0.1",
+    "@types/crypto-js": "^4.1.1",
     "cross-undici-fetch": "^0.2.5",
+    "crypto-js": "^4.1.1",
     "googleapis": "^100.0.0"
   }
 }
