@@ -25,11 +25,24 @@ export const schema = gql`
   }
 
   type AddNewGoogleDriveCredentialResult {
-    id: ID!
+    credentialId: ID!
+  }
+
+  input AddNewGoogleDriveStorageInput {
+    credentialId: ID!
+    name: String!
+  }
+
+  type AddNewGoogleDriveStorageResult {
+    storageId: ID!
   }
   type Mutation {
     addNewGoogleDriveCredential(
       input: AddNewGoogleDriveCredentialInput
     ): AddNewGoogleDriveCredentialResult @requireAuth
+
+    addNewGoogleDriveStorage(
+      input: AddNewGoogleDriveStorageInput
+    ): AddNewGoogleDriveStorageResult @requireAuth
   }
 `

@@ -6,6 +6,7 @@ import { authClient } from 'src/lib/google'
 import { logger } from 'src/lib/logger'
 import { db } from 'src/lib/db'
 import { encrypt } from 'src/lib/crypto'
+import { ForbiddenError } from '@redwoodjs/graphql-server'
 
 interface AddNewGoogleDriveContext {
   input: AddNewGoogleDriveCredentialInput
@@ -14,24 +15,27 @@ interface AddNewGoogleDriveContext {
 export const addNewGoogleDriveCredential = async ({
   input,
 }: AddNewGoogleDriveContext): Promise<AddNewGoogleDriveCredentialResult> => {
-  logger.info('Running addNewGoogleDrive mutation')
   const { code } = input
   const { currentUser } = context
 
   try {
     /**  Get token from code */
     const { tokens } = await authClient.getToken(code)
-    logger.debug({ custom: { tokens } })
+    logger.info({ custom: { tokens } })
 
     /** Find User record in db */
     const userInDb = await db.user.findUnique({
       where: {
         supabaseId: currentUser.sub,
       },
+      select: {
+        name: true,
+        supabaseId: true,
+      },
       rejectOnNotFound: true,
     })
 
-    logger.debug({ custom: { userInDb } }, `Found user ${userInDb.name}`)
+    logger.info({ custom: { userInDb } }, `Found user ${userInDb.name}`)
 
     /** Create new credential then bind to user */
     // TODO: make upsert work then query by accessToken
@@ -46,8 +50,11 @@ export const addNewGoogleDriveCredential = async ({
           },
         },
       },
+      select: {
+        id: true,
+      },
     })
-    logger.debug(
+    logger.info(
       { custom: { credential } },
       `Created credential for ${userInDb.name}`
     )
@@ -56,10 +63,10 @@ export const addNewGoogleDriveCredential = async ({
     logger.info(message)
 
     return {
-      id: credential.id,
+      credentialId: credential.id,
     }
   } catch (err) {
-    logger.debug({ custom: { err } }, 'Error in addNewGoogleDrive mutation')
-    throw new Error()
+    logger.error({ custom: { err } }, 'Error in addNewGoogleDrive mutation')
+    throw new ForbiddenError('Unauthorized access')
   }
 }
