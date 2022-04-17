@@ -34,6 +34,7 @@ export const addNewGoogleDriveCredential = async ({
     logger.debug({ custom: { userInDb } }, `Found user ${userInDb.name}`)
 
     /** Create new credential then bind to user */
+    // TODO: make upsert work then query by accessToken
     const credential = await db.credential.create({
       data: {
         accessToken: encrypt(tokens.access_token),
@@ -58,7 +59,7 @@ export const addNewGoogleDriveCredential = async ({
       id: credential.id,
     }
   } catch (err) {
-    logger.error(err)
+    logger.debug({ custom: { err } }, 'Error in addNewGoogleDrive mutation')
     throw new Error()
   }
 }

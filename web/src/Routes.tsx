@@ -24,8 +24,8 @@ const Routes = () => {
       </Set>
       {/* ROutes that authenticaed users are supposed to access */}
       <Private unauthenticated={'auth'}>
-        <Route path="/google-auth-callback" page={GoogleAuthCallbackPage} name="googleAuthCallback" />
         <Set wrap={MainLayout}>
+          <Route path="/google-auth-callback" page={GoogleAuthCallbackPage} name="googleAuthCallback" />
           <Route path="/" page={StoragePage} name="storage" />
         </Set>
       </Private>

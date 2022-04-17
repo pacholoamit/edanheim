@@ -1,5 +1,7 @@
-import { useParams } from '@redwoodjs/router'
-import { MetaTags, useMutation } from '@redwoodjs/web'
+import StoragePage from 'src/pages/StoragePage'
+import useDevelopment from 'src/hooks/useDevelopment'
+import { navigate, routes, useParams } from '@redwoodjs/router'
+import { useMutation } from '@redwoodjs/web'
 
 const ADD_NEW_GOOGLE_DRIVE = gql`
   mutation AddNewGoogleDriveCredentialMutation(
@@ -11,30 +13,23 @@ const ADD_NEW_GOOGLE_DRIVE = gql`
   }
 `
 
+const opts = {
+  onError: () => navigate(routes.storage()),
+}
+
 const GoogleAuthCallbackPage = () => {
   const { code } = useParams()
-  const [add, { data }] = useMutation(ADD_NEW_GOOGLE_DRIVE)
+  const [add] = useMutation(ADD_NEW_GOOGLE_DRIVE, { opts })
+  const { log } = useDevelopment()
 
   React.useEffect(() => {
-    if (code) {
-      add({ variables: { input: { code } } })
-    }
+    if (!code) navigate(routes.storage())
+    add({ variables: { input: { code } } })
+    log({ code })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [code])
 
-  console.log(data)
-
-  // TODO: Already working... NEXT STEP is to add a graphql resolver to consume the code and scope
-  return (
-    <>
-      <MetaTags
-        title="GoogleAuthCallback"
-        description="GoogleAuthCallback page"
-      />
-
-      <h1>GoogleAuthCallbackPage</h1>
-      <p>{code}</p>
-    </>
-  )
+  return <StoragePage />
 }
 
 export default GoogleAuthCallbackPage
