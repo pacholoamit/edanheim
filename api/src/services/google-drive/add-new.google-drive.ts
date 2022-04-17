@@ -1,6 +1,6 @@
 import {
-  AddNewGoogleDriveInput,
-  AddNewGoogleDriveResult,
+  AddNewGoogleDriveCredentialInput,
+  AddNewGoogleDriveCredentialResult,
 } from 'api/types/graphql'
 
 import { authClient } from 'src/lib/google'
@@ -8,12 +8,12 @@ import { logger } from 'src/lib/logger'
 import { db } from 'src/lib/db'
 
 interface AddNewGoogleDriveContext {
-  input: AddNewGoogleDriveInput
+  input: AddNewGoogleDriveCredentialInput
 }
 
-export const addNewGoogleDrive = async ({
+export const addNewGoogleDriveCredential = async ({
   input,
-}: AddNewGoogleDriveContext): Promise<AddNewGoogleDriveResult> => {
+}: AddNewGoogleDriveContext): Promise<AddNewGoogleDriveCredentialResult> => {
   logger.info('Running addNewGoogleDrive mutation')
   const { code } = input
   const { currentUser } = context
@@ -55,7 +55,7 @@ export const addNewGoogleDrive = async ({
     logger.info(message)
 
     return {
-      message,
+      id: credential.id,
     }
   } catch (err) {
     logger.error(err)

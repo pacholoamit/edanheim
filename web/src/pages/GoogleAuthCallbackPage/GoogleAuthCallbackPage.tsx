@@ -2,9 +2,11 @@ import { useParams } from '@redwoodjs/router'
 import { MetaTags, useMutation } from '@redwoodjs/web'
 
 const ADD_NEW_GOOGLE_DRIVE = gql`
-  mutation AddNewGoogleDriveMutation($input: AddNewGoogleDriveInput!) {
-    addNewGoogleDrive(input: $input) {
-      message
+  mutation AddNewGoogleDriveCredentialMutation(
+    $input: AddNewGoogleDriveCredentialInput!
+  ) {
+    addNewGoogleDriveCredential(input: $input) {
+      id
     }
   }
 `
