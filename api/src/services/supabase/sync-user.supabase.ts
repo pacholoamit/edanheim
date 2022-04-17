@@ -11,7 +11,7 @@ export const syncUser = async () => {
   const { currentUser } = context
   const { user_metadata } = currentUser
   const metadata = user_metadata as unknown as any
-  let message = null
+  let message = 'No action performed'
 
   const userInDb = await db.user.findUnique({
     where: {

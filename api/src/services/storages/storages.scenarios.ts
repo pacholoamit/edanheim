@@ -4,28 +4,28 @@ export const standard = defineScenario<Prisma.StorageCreateArgs>({
   storage: {
     one: {
       data: {
-        Provider: 'AWS_S3',
+        provider: 'AWS_S3',
         name: 'String',
-        updatedAt: '2022-04-16T08:44:44Z',
+        updatedAt: '2022-04-17T08:31:26Z',
         user: {
           create: {
-            supabaseId: 'String9742643',
-            email: 'String2188275',
-            updatedAt: '2022-04-16T08:44:44Z',
+            supabaseId: 'String5216151',
+            email: 'String6881014',
+            updatedAt: '2022-04-17T08:31:26Z',
           },
         },
       },
     },
     two: {
       data: {
-        Provider: 'AWS_S3',
+        provider: 'AWS_S3',
         name: 'String',
-        updatedAt: '2022-04-16T08:44:44Z',
+        updatedAt: '2022-04-17T08:31:26Z',
         user: {
           create: {
-            supabaseId: 'String7781336',
-            email: 'String727460',
-            updatedAt: '2022-04-16T08:44:44Z',
+            supabaseId: 'String8386135',
+            email: 'String813552',
+            updatedAt: '2022-04-17T08:31:26Z',
           },
         },
       },

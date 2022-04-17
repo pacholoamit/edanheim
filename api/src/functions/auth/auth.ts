@@ -20,7 +20,7 @@ import { authClient } from 'src/lib/google'
  * function, and execution environment.
  */
 
-// TODO: Pass DELETE THIS AND MAKE THIS BETTER
+// TODO: Make this in graphql since no user context
 export const handler = async (event: APIGatewayEvent, _: Context) => {
   logger.info('Invoked auth function')
 

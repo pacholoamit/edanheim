@@ -22,7 +22,7 @@ model User {
 
 model Storage {
   id         String          @id @unique @default(uuid())
-  Provider   StorageProvider
+  provider   StorageProvider
   name       String
   user       User            @relation(fields: [userId], references: [supabaseId])
   userId     String
@@ -32,14 +32,18 @@ model Storage {
 }
 
 model Credential {
-  id          String   @id @unique @default(uuid())
-  accessToken String
-  storage     Storage  @relation(fields: [storageId], references: [id])
-  storageId   String   @unique
-  user        User     @relation(fields: [userId], references: [supabaseId])
-  userId      String
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  id           String    @id @unique @default(uuid())
+  accessToken  String
+  refreshToken String?
+  scope        String?
+  tokenType    String?   @default("Bearer")
+  expiryDate   DateTime?
+  storage      Storage   @relation(fields: [storageId], references: [id])
+  storageId    String    @unique
+  user         User      @relation(fields: [userId], references: [supabaseId])
+  userId       String
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
 
 }
 

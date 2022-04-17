@@ -2,6 +2,10 @@ export const schema = gql`
   type Credential {
     id: String!
     accessToken: String!
+    refreshToken: String
+    scope: String
+    tokenType: String
+    expiryDate: DateTime
     storage: Storage!
     storageId: String!
     user: User!
@@ -17,12 +21,20 @@ export const schema = gql`
 
   input CreateCredentialInput {
     accessToken: String!
+    refreshToken: String
+    scope: String
+    tokenType: String
+    expiryDate: DateTime
     storageId: String!
     userId: String!
   }
 
   input UpdateCredentialInput {
     accessToken: String
+    refreshToken: String
+    scope: String
+    tokenType: String
+    expiryDate: DateTime
     storageId: String
     userId: String
   }

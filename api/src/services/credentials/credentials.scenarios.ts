@@ -5,26 +5,26 @@ export const standard = defineScenario<Prisma.CredentialCreateArgs>({
     one: {
       data: {
         accessToken: 'String',
-        updatedAt: '2022-04-16T08:45:01Z',
+        updatedAt: '2022-04-17T08:31:14Z',
         storage: {
           create: {
-            Provider: 'AWS_S3',
+            provider: 'AWS_S3',
             name: 'String',
-            updatedAt: '2022-04-16T08:45:01Z',
+            updatedAt: '2022-04-17T08:31:14Z',
             user: {
               create: {
-                supabaseId: 'String8099031',
-                email: 'String606353',
-                updatedAt: '2022-04-16T08:45:01Z',
+                supabaseId: 'String5971924',
+                email: 'String2154170',
+                updatedAt: '2022-04-17T08:31:14Z',
               },
             },
           },
         },
         user: {
           create: {
-            supabaseId: 'String8215370',
-            email: 'String6775531',
-            updatedAt: '2022-04-16T08:45:01Z',
+            supabaseId: 'String3830301',
+            email: 'String8774124',
+            updatedAt: '2022-04-17T08:31:14Z',
           },
         },
       },
@@ -32,26 +32,26 @@ export const standard = defineScenario<Prisma.CredentialCreateArgs>({
     two: {
       data: {
         accessToken: 'String',
-        updatedAt: '2022-04-16T08:45:01Z',
+        updatedAt: '2022-04-17T08:31:14Z',
         storage: {
           create: {
-            Provider: 'AWS_S3',
+            provider: 'AWS_S3',
             name: 'String',
-            updatedAt: '2022-04-16T08:45:01Z',
+            updatedAt: '2022-04-17T08:31:14Z',
             user: {
               create: {
-                supabaseId: 'String9202987',
-                email: 'String2310183',
-                updatedAt: '2022-04-16T08:45:01Z',
+                supabaseId: 'String7346662',
+                email: 'String5712851',
+                updatedAt: '2022-04-17T08:31:14Z',
               },
             },
           },
         },
         user: {
           create: {
-            supabaseId: 'String1067404',
-            email: 'String3686667',
-            updatedAt: '2022-04-16T08:45:01Z',
+            supabaseId: 'String6495692',
+            email: 'String5279410',
+            updatedAt: '2022-04-17T08:31:14Z',
           },
         },
       },

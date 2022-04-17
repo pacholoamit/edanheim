@@ -4,16 +4,16 @@ export const standard = defineScenario<Prisma.UserCreateArgs>({
   user: {
     one: {
       data: {
-        supabaseId: 'String8928573',
-        email: 'String3691671',
-        updatedAt: '2022-04-16T08:44:30Z',
+        supabaseId: 'String4316464',
+        email: 'String3479106',
+        updatedAt: '2022-04-17T08:31:39Z',
       },
     },
     two: {
       data: {
-        supabaseId: 'String8357171',
-        email: 'String1349016',
-        updatedAt: '2022-04-16T08:44:30Z',
+        supabaseId: 'String7990939',
+        email: 'String7757935',
+        updatedAt: '2022-04-17T08:31:39Z',
       },
     },
   },

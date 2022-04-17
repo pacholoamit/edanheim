@@ -29,27 +29,27 @@ describe('storages', () => {
   scenario('creates a storage', async (scenario: StandardScenario) => {
     const result = await createStorage({
       input: {
-        Provider: 'AWS_S3',
+        provider: 'AWS_S3',
         name: 'String',
         userId: scenario.storage.two.userId,
-        updatedAt: '2022-04-16T08:44:44Z',
+        updatedAt: '2022-04-17T08:31:26Z',
       },
     })
 
-    expect(result.Provider).toEqual('AWS_S3')
+    expect(result.provider).toEqual('AWS_S3')
     expect(result.name).toEqual('String')
     expect(result.userId).toEqual(scenario.storage.two.userId)
-    expect(result.updatedAt).toEqual('2022-04-16T08:44:44Z')
+    expect(result.updatedAt).toEqual('2022-04-17T08:31:26Z')
   })
 
   scenario('updates a storage', async (scenario: StandardScenario) => {
     const original = await storage({ id: scenario.storage.one.id })
     const result = await updateStorage({
       id: original.id,
-      input: { Provider: 'MS_ONECLOUD' },
+      input: { provider: 'MS_ONECLOUD' },
     })
 
-    expect(result.Provider).toEqual('MS_ONECLOUD')
+    expect(result.provider).toEqual('MS_ONECLOUD')
   })
 
   scenario('deletes a storage', async (scenario: StandardScenario) => {

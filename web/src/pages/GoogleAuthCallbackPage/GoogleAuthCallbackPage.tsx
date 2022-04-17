@@ -2,11 +2,11 @@ import { Link, routes, useParams } from '@redwoodjs/router'
 import { MetaTags } from '@redwoodjs/web'
 
 const GoogleAuthCallbackPage = () => {
-  const { code, scope } = useParams()
+  const { code } = useParams()
 
-  console.log({ code, scope })
+  console.log({ code })
 
-  // TODO: Already working... NEXT STEP is to add a server function to consume the code and scope
+  // TODO: Already working... NEXT STEP is to add a graphql resolver to consume the code and scope
   return (
     <>
       <MetaTags

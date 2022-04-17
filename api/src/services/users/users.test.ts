@@ -23,25 +23,25 @@ describe('users', () => {
   scenario('creates a user', async () => {
     const result = await createUser({
       input: {
-        supabaseId: 'String6344500',
-        email: 'String1720580',
-        updatedAt: '2022-04-16T08:44:29Z',
+        supabaseId: 'String798978',
+        email: 'String2929219',
+        updatedAt: '2022-04-17T08:31:39Z',
       },
     })
 
-    expect(result.supabaseId).toEqual('String6344500')
-    expect(result.email).toEqual('String1720580')
-    expect(result.updatedAt).toEqual('2022-04-16T08:44:29Z')
+    expect(result.supabaseId).toEqual('String798978')
+    expect(result.email).toEqual('String2929219')
+    expect(result.updatedAt).toEqual('2022-04-17T08:31:39Z')
   })
 
   scenario('updates a user', async (scenario: StandardScenario) => {
     const original = await user({ id: scenario.user.one.id })
     const result = await updateUser({
       id: original.id,
-      input: { supabaseId: 'String88570392' },
+      input: { supabaseId: 'String53126362' },
     })
 
-    expect(result.supabaseId).toEqual('String88570392')
+    expect(result.supabaseId).toEqual('String53126362')
   })
 
   scenario('deletes a user', async (scenario: StandardScenario) => {

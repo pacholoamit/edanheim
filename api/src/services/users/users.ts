@@ -7,9 +7,9 @@ export const users = () => {
   return db.user.findMany()
 }
 
-export const user = ({ supabaseId }: Prisma.UserWhereUniqueInput) => {
+export const user = ({ id }: Prisma.UserWhereUniqueInput) => {
   return db.user.findUnique({
-    where: { supabaseId },
+    where: { id },
   })
 }
 
@@ -27,24 +27,22 @@ interface UpdateUserArgs extends Prisma.UserWhereUniqueInput {
   input: Prisma.UserUpdateInput
 }
 
-export const updateUser = ({ supabaseId, input }: UpdateUserArgs) => {
+export const updateUser = ({ id, input }: UpdateUserArgs) => {
   return db.user.update({
     data: input,
-    where: { supabaseId },
+    where: { id },
   })
 }
 
-export const deleteUser = ({ supabaseId }: Prisma.UserWhereUniqueInput) => {
+export const deleteUser = ({ id }: Prisma.UserWhereUniqueInput) => {
   return db.user.delete({
-    where: { supabaseId },
+    where: { id },
   })
 }
 
 export const User = {
   storage: (_obj, { root }: ResolverArgs<ReturnType<typeof user>>) =>
-    db.user.findUnique({ where: { supabaseId: root.supabaseId } }).storage(),
+    db.user.findUnique({ where: { id: root.id } }).storage(),
   credentials: (_obj, { root }: ResolverArgs<ReturnType<typeof user>>) =>
-    db.user
-      .findUnique({ where: { supabaseId: root.supabaseId } })
-      .credentials(),
+    db.user.findUnique({ where: { id: root.id } }).credentials(),
 }

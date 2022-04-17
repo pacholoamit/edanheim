@@ -1,7 +1,7 @@
 export const schema = gql`
   type Storage {
     id: String!
-    Provider: StorageProvider!
+    provider: StorageProvider!
     name: String!
     user: User!
     userId: String!
@@ -22,13 +22,13 @@ export const schema = gql`
   }
 
   input CreateStorageInput {
-    Provider: StorageProvider!
+    provider: StorageProvider!
     name: String!
     userId: String!
   }
 
   input UpdateStorageInput {
-    Provider: StorageProvider
+    provider: StorageProvider
     name: String
     userId: String
   }

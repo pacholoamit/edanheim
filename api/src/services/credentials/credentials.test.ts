@@ -35,14 +35,14 @@ describe('credentials', () => {
         accessToken: 'String',
         storageId: scenario.credential.two.storageId,
         userId: scenario.credential.two.userId,
-        updatedAt: '2022-04-16T08:45:01Z',
+        updatedAt: '2022-04-17T08:31:14Z',
       },
     })
 
     expect(result.accessToken).toEqual('String')
     expect(result.storageId).toEqual(scenario.credential.two.storageId)
     expect(result.userId).toEqual(scenario.credential.two.userId)
-    expect(result.updatedAt).toEqual('2022-04-16T08:45:01Z')
+    expect(result.updatedAt).toEqual('2022-04-17T08:31:14Z')
   })
 
   scenario('updates a credential', async (scenario: StandardScenario) => {
