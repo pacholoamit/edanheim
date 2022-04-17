@@ -1,3 +1,4 @@
+import { AuthenticationError } from '@redwoodjs/graphql-server'
 import { db } from 'src/lib/db'
 import { logger } from 'src/lib/logger'
 
@@ -10,32 +11,30 @@ import { logger } from 'src/lib/logger'
 export const syncUser = async () => {
   const { currentUser } = context
   const { user_metadata } = currentUser
-  const metadata = user_metadata as unknown as any
-  let message = 'No action performed'
 
-  const userInDb = await db.user.findUnique({
-    where: {
-      supabaseId: currentUser.sub as string,
-    },
-  })
-
-  // Create user
-  if (!userInDb) {
-    await db.user.create({
-      data: {
-        email: currentUser.email as string,
-        supabaseId: currentUser.sub as string,
-        name: metadata.full_name ?? currentUser.email,
+  try {
+    await db.user.upsert({
+      where: {
+        supabaseId: currentUser.sub,
+      },
+      create: {
+        supabaseId: currentUser.sub,
+        name: user_metadata.full_name ?? currentUser.email,
+        email: currentUser.email,
+      },
+      update: {
+        name: user_metadata.full_name ?? currentUser.email,
+        email: currentUser.email,
       },
     })
-    message = `User ${currentUser.email} created`
-    logger.info(message)
-  }
 
-  // TODO: Implement update on user
-  return {
-    result: {
-      message,
-    },
+    return {
+      result: {
+        message: 'User synced successfully',
+      },
+    }
+  } catch (err) {
+    logger.error(err)
+    throw new AuthenticationError('Error syncing user with Supabase')
   }
 }

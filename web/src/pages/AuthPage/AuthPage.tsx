@@ -47,10 +47,7 @@ const AuthPage = () => {
         </Center>
         {/* OAuth Buttons group */}
         <OAuthButton provider="github" />
-        <OAuthButton
-          provider="google"
-          scopes="https://www.googleapis.com/auth/drive"
-        />
+        <OAuthButton provider="google" />
         {/* Divider */}
         <Divider my={'md'} variant="dashed" label="OR" labelPosition="center" />
         {/* Forms */}
