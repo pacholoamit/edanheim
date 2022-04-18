@@ -9,6 +9,7 @@ import {
   useMantineTheme,
 } from '@mantine/core'
 import { BrandGoogleDrive } from 'tabler-icons-react'
+import { navigate, routes } from '@redwoodjs/router'
 
 export const QUERY = gql`
   query ListStorageQuery {
@@ -44,7 +45,12 @@ export const Success = ({
   return (
     <>
       {listStorage.map((storage) => (
-        <PrimaryButton onClick={() => {}} key={storage.id}>
+        <PrimaryButton
+          onClick={() => {
+            navigate(routes.googleDrive({ id: storage.id }))
+          }}
+          key={storage.id}
+        >
           <Group>
             <ThemeIcon size={'lg'} color={'indigo'} variant="light">
               <BrandGoogleDrive size={24} />

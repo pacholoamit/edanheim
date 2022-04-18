@@ -1,5 +1,5 @@
 import useAuthClient from 'src/hooks/useAuthClient'
-import StorageProviderCard from 'src/pages/StoragePage/components/StorageProviderCard'
+import StorageProviderCard from 'src/pages/NewStoragePage/components/StorageProviderCard'
 
 import { AwsS3SVG, GoogleDriveSVG, MicrosoftOneDriveSVG } from 'src/constants'
 import { useViewportSize } from '@mantine/hooks'
@@ -27,7 +27,7 @@ const sx = {
   },
 }
 
-const StoragePage = () => {
+const NewStoragePage = () => {
   const { width } = useViewportSize()
   const { getGoogleAuthUrl } = useAuthClient()
   const theme = useMantineTheme()
@@ -70,4 +70,4 @@ const StoragePage = () => {
   )
 }
 
-export default StoragePage
+export default NewStoragePage

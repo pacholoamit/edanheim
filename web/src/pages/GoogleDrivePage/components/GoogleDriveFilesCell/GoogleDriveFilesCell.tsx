@@ -1,23 +1,23 @@
-import type { googleDriveFiles } from 'types/graphql'
+import type { GetGoogleDriveStorageQuery } from 'types/graphql'
 import type { CellSuccessProps, CellFailureProps } from '@redwoodjs/web'
+import { edanheimLogo } from 'src/constants'
 import {
   Card,
   Grid,
-  Text,
-  Image,
+  MantineTheme,
   Space,
   Tooltip,
-  MantineTheme,
+  Image,
+  Text,
 } from '@mantine/core'
-import { edanheimLogo } from 'src/constants'
 
 export const QUERY = gql`
-  query googleDriveFiles($session: WebSession!) {
-    googleDriveFiles(session: $session) {
+  query GetGoogleDriveStorageQuery($input: GetGoogleDriveStorageInput!) {
+    getGoogleDriveStorage(input: $input) {
       id
       kind
-      name
       mimeType
+      name
     }
   }
 `
@@ -31,8 +31,8 @@ export const Failure = ({ error }: CellFailureProps) => (
 )
 
 export const Success = ({
-  googleDriveFiles,
-}: CellSuccessProps<googleDriveFiles>) => {
+  getGoogleDriveStorage,
+}: CellSuccessProps<GetGoogleDriveStorageQuery>) => {
   const sx = (theme: MantineTheme) => ({
     color:
       theme.colorScheme === 'dark'
@@ -41,12 +41,17 @@ export const Success = ({
   })
   return (
     <Grid gutter={'xl'}>
-      {googleDriveFiles.map((file) => {
+      {getGoogleDriveStorage.map((file) => {
         return (
           <Grid.Col key={file.id} sm={2}>
             <Card shadow={'lg'} key={file.id} p="md" sx={{ height: 200 }}>
               <Card.Section>
-                <Image src={edanheimLogo} height={160} alt={file.name} />
+                <Image
+                  src={null}
+                  height={160}
+                  alt={file.name}
+                  withPlaceholder
+                />
               </Card.Section>
               <Space h={'sm'} />
               <Tooltip label={file.name}>

@@ -1,20 +1,17 @@
 import { db } from 'src/lib/db'
 import { logger } from 'src/lib/logger'
-import { decrypt } from 'src/lib/crypto'
+import { ListStorageResult } from 'api/types/graphql'
 
-export const listStorage = async () => {
+export const listStorage = async (): Promise<ListStorageResult[]> => {
   const { currentUser } = context
 
   const { storage } = await db.user.findUnique({
     select: {
       storage: {
-        include: {
-          credential: {
-            select: {
-              accessToken: true,
-              refreshToken: true,
-            },
-          },
+        select: {
+          id: true,
+          name: true,
+          provider: true,
         },
       },
     },
@@ -25,19 +22,5 @@ export const listStorage = async () => {
 
   logger.info({ custom: { storage } }, `Found storage for ${currentUser.email}`)
 
-  const decryptedStorage = storage.map((storage) => {
-    const { credential } = storage
-    const { accessToken, refreshToken } = credential
-
-    return {
-      ...storage,
-      credential: {
-        ...credential,
-        accessToken: accessToken && decrypt(accessToken),
-        refreshToken: refreshToken && decrypt(refreshToken),
-      },
-    }
-  })
-
-  return decryptedStorage
+  return storage
 }

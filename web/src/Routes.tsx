@@ -26,7 +26,8 @@ const Routes = () => {
       <Private unauthenticated={'auth'}>
         <Set wrap={MainLayout}>
           <Route path="/google-auth-callback" page={GoogleAuthCallbackPage} name="googleAuthCallback" />
-          <Route path="/" page={StoragePage} name="storage" />
+          <Route path="/google-drive/{id}" page={GoogleDrivePage} name="googleDrive" />
+          <Route path="/" page={NewStoragePage} name="storage" />
         </Set>
       </Private>
     </Router>

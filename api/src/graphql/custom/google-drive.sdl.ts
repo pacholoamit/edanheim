@@ -14,10 +14,22 @@ export const schema = gql`
     refresh_token: String
     token_type: String
   }
+  input GetGoogleDriveStorageInput {
+    storageId: ID!
+  }
 
+  type GetGoogleDriveStorageResult {
+    kind: String
+    id: String
+    name: String
+    mimeType: String
+  }
   type Query {
     googleDriveFiles(session: WebSession!): [GoogleDriveFile!]! @requireAuth
     getGoogleDriveAuthUrl: String! @requireAuth
+    getGoogleDriveStorage(
+      input: GetGoogleDriveStorageInput!
+    ): [GetGoogleDriveStorageResult!]! @requireAuth
   }
 
   input AddNewGoogleDriveCredentialInput {

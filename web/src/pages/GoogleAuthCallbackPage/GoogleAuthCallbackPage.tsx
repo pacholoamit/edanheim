@@ -1,4 +1,4 @@
-import StoragePage from 'src/pages/StoragePage'
+import StoragePage from 'src/pages/NewStoragePage'
 import CreateStorageModal from 'src/pages/GoogleAuthCallbackPage/components/CreateStorageModal'
 import { default as useGoogleCredential } from 'src/hooks/useAddNewGoogleDriveCredential'
 import { navigate, routes, useParams } from '@redwoodjs/router'
