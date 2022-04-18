@@ -1,6 +1,14 @@
+import PrimaryButton from 'src/components/PrimaryButton'
 import type { ListStorageQuery } from 'types/graphql'
 import type { CellSuccessProps, CellFailureProps } from '@redwoodjs/web'
-import { Text } from '@mantine/core'
+import {
+  Group,
+  MantineTheme,
+  Text,
+  ThemeIcon,
+  useMantineTheme,
+} from '@mantine/core'
+import { BrandGoogleDrive } from 'tabler-icons-react'
 
 export const QUERY = gql`
   query ListStorageQuery {
@@ -15,6 +23,15 @@ export const QUERY = gql`
   }
 `
 
+const sx = (theme?: MantineTheme) => {
+  const isDark = theme.colorScheme === 'dark'
+  return {
+    text: {
+      color: isDark ? theme.colors.dark[1] : theme.colors.indigo[7],
+    },
+  }
+}
+
 export const Loading = () => <div>Loading...</div>
 
 export const Empty = () => <div>Empty</div>
@@ -26,12 +43,22 @@ export const Failure = ({ error }: CellFailureProps) => (
 export const Success = ({
   listStorage,
 }: CellSuccessProps<ListStorageQuery>) => {
+  const theme = useMantineTheme()
+
   return (
     <>
       {listStorage.map((storage) => (
-        <div key={storage.id}>
-          <Text>{storage.name}</Text>
-        </div>
+        <PrimaryButton onClick={() => {}} key={storage.id}>
+          <Group>
+            <ThemeIcon size={'lg'} color={'indigo'} variant="light">
+              <BrandGoogleDrive size={24} />
+            </ThemeIcon>
+
+            <Text size="sm" weight={600} sx={sx(theme).text}>
+              {storage.name}
+            </Text>
+          </Group>
+        </PrimaryButton>
       ))}
     </>
   )

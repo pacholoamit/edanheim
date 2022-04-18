@@ -5,7 +5,7 @@ const NavStorageSection: React.FC = () => {
   return (
     <>
       <Title order={5} sx={{ opacity: 0.5 }}>
-        Storage
+        My Storage
       </Title>
       <ListStorageCell />
     </>
