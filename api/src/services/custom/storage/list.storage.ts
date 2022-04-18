@@ -1,15 +1,20 @@
 import { db } from 'src/lib/db'
+import { logger } from 'src/lib/logger'
+import { decrypt } from 'src/lib/crypto'
 
-export const listStorage = () => {
+export const listStorage = async () => {
   const { currentUser } = context
 
-  const storage = db.user.findUnique({
+  const { storage } = await db.user.findUnique({
     select: {
       storage: {
-        select: {
-          id: true,
-          name: true,
-          provider: true,
+        include: {
+          credential: {
+            select: {
+              accessToken: true,
+              refreshToken: true,
+            },
+          },
         },
       },
     },
@@ -18,5 +23,21 @@ export const listStorage = () => {
     },
   })
 
-  return storage
+  logger.info({ custom: { storage } }, `Found storage for ${currentUser.email}`)
+
+  const decryptedStorage = storage.map((storage) => {
+    const { credential } = storage
+    const { accessToken, refreshToken } = credential
+
+    return {
+      ...storage,
+      credential: {
+        ...credential,
+        accessToken: accessToken && decrypt(accessToken),
+        refreshToken: refreshToken && decrypt(refreshToken),
+      },
+    }
+  })
+
+  return decryptedStorage
 }

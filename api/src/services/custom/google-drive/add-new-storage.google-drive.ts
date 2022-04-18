@@ -1,4 +1,3 @@
-import { ForbiddenError } from '@redwoodjs/graphql-server'
 import {
   AddNewGoogleDriveStorageResult,
   AddNewGoogleDriveStorageInput,
@@ -17,53 +16,45 @@ export const addNewGoogleDriveStorage = async ({
   const { currentUser } = context
   const { credentialId, name } = input
 
-  try {
-    /** Find credential in db */
-    const credentialInDb = await db.credential.findUnique({
-      where: {
-        id: credentialId,
-      },
-      rejectOnNotFound: true,
-      select: {
-        id: true,
-      },
-    })
+  /** Find credential in db */
+  const credentialInDb = await db.credential.findUnique({
+    where: {
+      id: credentialId,
+    },
+    rejectOnNotFound: true,
+    select: {
+      id: true,
+    },
+  })
 
-    logger.info({ custom: { credentialInDb } }, `Found credential`)
+  logger.info({ custom: { credentialInDb } }, `Found credential`)
 
-    const storage = await db.storage.create({
-      data: {
-        name,
-        provider: 'GOOGLE_DRIVE', //TODO: Maybe make dynamic?
-        user: {
-          connect: {
-            supabaseId: currentUser.sub,
-          },
-        },
-        credential: {
-          connect: {
-            id: credentialInDb.id,
-          },
+  const storage = await db.storage.create({
+    data: {
+      name,
+      provider: 'GOOGLE_DRIVE', //TODO: Maybe make dynamic?
+      user: {
+        connect: {
+          supabaseId: currentUser.sub,
         },
       },
-      select: {
-        id: true,
+      credential: {
+        connect: {
+          id: credentialInDb.id,
+        },
       },
-    })
+    },
+    select: {
+      id: true,
+    },
+  })
 
-    logger.info(
-      { custom: { storage } },
-      `Successfully Created storage for ${currentUser.email}`
-    )
+  logger.info(
+    { custom: { storage } },
+    `Successfully Created storage for ${currentUser.email}`
+  )
 
-    return {
-      storageId: storage.id,
-    }
-  } catch (err) {
-    logger.error(
-      { custom: { err } },
-      `Failed to create storage for ${currentUser.email}`
-    )
-    throw new ForbiddenError('Unauthorized access')
+  return {
+    storageId: storage.id,
   }
 }

@@ -1,5 +1,5 @@
 export const schema = gql`
   type Query {
-    listStorage: JSONObject @requireAuth
+    listStorage: [JSONObject!]! @requireAuth
   }
 `
