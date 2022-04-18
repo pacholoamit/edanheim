@@ -16,11 +16,11 @@ const Routes = () => {
   return (
     <Router>
       {/* Common Routes */}
-      <Route notfound page={NotFoundPage} />
+      <Route notfound page={NotFoundPage} prerender />
 
       {/* Routes that authenticated users are NOT supposed to access */}
       <Set wrap={AuthLayout}>
-        <Route path="/auth" page={AuthPage} name="auth" />
+        <Route path="/auth" page={AuthPage} name="auth" prerender />
       </Set>
       {/* ROutes that authenticaed users are supposed to access */}
       <Private unauthenticated={'auth'}>
