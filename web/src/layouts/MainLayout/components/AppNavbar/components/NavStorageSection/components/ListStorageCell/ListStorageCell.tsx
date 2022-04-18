@@ -15,10 +15,6 @@ export const QUERY = gql`
     listStorage {
       id
       name
-      credential {
-        accessToken
-        refreshToken
-      }
     }
   }
 `
