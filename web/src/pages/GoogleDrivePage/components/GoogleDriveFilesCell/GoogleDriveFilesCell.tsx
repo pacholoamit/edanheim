@@ -1,6 +1,5 @@
 import type { GetGoogleDriveStorageQuery } from 'types/graphql'
 import type { CellSuccessProps, CellFailureProps } from '@redwoodjs/web'
-import { edanheimLogo } from 'src/constants'
 import {
   Card,
   Grid,

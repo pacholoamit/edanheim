@@ -5,7 +5,7 @@ import { ListStorageResult } from 'api/types/graphql'
 export const listStorage = async (): Promise<ListStorageResult[]> => {
   const { currentUser } = context
 
-  const { storage } = await db.user.findUnique({
+  const data = await db.user.findUnique({
     select: {
       storage: {
         select: {
@@ -20,7 +20,7 @@ export const listStorage = async (): Promise<ListStorageResult[]> => {
     },
   })
 
-  logger.info({ custom: { storage } }, `Found storage for ${currentUser.email}`)
+  logger.info({ custom: { data } }, `Found storage for ${currentUser.email}`)
 
-  return storage
+  return data.storage
 }
