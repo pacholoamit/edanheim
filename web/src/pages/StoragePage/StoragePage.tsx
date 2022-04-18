@@ -1,5 +1,6 @@
 import useAuthClient from 'src/hooks/useAuthClient'
 import StorageProviderCard from 'src/pages/StoragePage/components/StorageProviderCard'
+import ListStorageCell from 'src/components/ListStorageCell'
 import { AwsS3SVG, GoogleDriveSVG, MicrosoftOneDriveSVG } from 'src/constants'
 import { useViewportSize } from '@mantine/hooks'
 import {
@@ -63,6 +64,7 @@ const StoragePage = () => {
           {storageProviders.map((provider) => (
             <StorageProviderCard key={provider.name} {...provider} />
           ))}
+          <ListStorageCell />
         </Grid>
       </Stack>
     </MediaQuery>
