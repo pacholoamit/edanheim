@@ -8,6 +8,7 @@ import {
   Text,
   MantineTheme,
   useMantineTheme,
+  Title,
 } from '@mantine/core'
 import { Plus } from 'tabler-icons-react'
 
@@ -45,7 +46,7 @@ const NavOption: React.FC<NavOptionProps> = ({ icon, color, label, route }) => {
   )
 }
 
-const NavOptionsSection = () => {
+const NavActionsSection = () => {
   const options: NavOptionProps[] = [
     {
       icon: <Plus size={24} />,
@@ -57,6 +58,9 @@ const NavOptionsSection = () => {
 
   return (
     <>
+      <Title order={5} sx={{ opacity: 0.5 }}>
+        Actions
+      </Title>
       {options.map((option) => (
         <NavOption {...option} key={option.label} />
       ))}
@@ -64,4 +68,4 @@ const NavOptionsSection = () => {
   )
 }
 
-export default NavOptionsSection
+export default NavActionsSection

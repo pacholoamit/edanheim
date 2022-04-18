@@ -26,9 +26,13 @@ export const Failure = ({ error }: CellFailureProps) => (
 export const Success = ({
   listStorage,
 }: CellSuccessProps<ListStorageQuery>) => {
-  return listStorage.map((storage) => (
-    <div key={storage.id}>
-      <Text>{storage.name}</Text>
-    </div>
-  ))
+  return (
+    <>
+      {listStorage.map((storage) => (
+        <div key={storage.id}>
+          <Text>{storage.name}</Text>
+        </div>
+      ))}
+    </>
+  )
 }

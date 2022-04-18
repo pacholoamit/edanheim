@@ -1,6 +1,6 @@
 import { render } from '@redwoodjs/testing/web'
 
-import NavOptionsSection from './NavOptionsSection'
+import NavActionsSection from './NavActionsSection'
 
 //   Improve this test with help from the Redwood Testing Doc:
 //    https://redwoodjs.com/docs/testing#testing-components
@@ -8,7 +8,7 @@ import NavOptionsSection from './NavOptionsSection'
 describe('NavOptionsSection', () => {
   it('renders successfully', () => {
     expect(() => {
-      render(<NavOptionsSection />)
+      render(<NavActionsSection />)
     }).not.toThrow()
   })
 })
