@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@apollo/client": "^3.5.10",
+    "@envelop/response-cache": "^2.3.1",
     "@redwoodjs/api": "^1.0.1",
     "@redwoodjs/graphql-server": "^1.0.1",
     "@types/crypto-js": "^4.1.1",

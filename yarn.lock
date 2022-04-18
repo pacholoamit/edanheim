@@ -2200,6 +2200,20 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@envelop/response-cache@npm:^2.3.1":
+  version: 2.3.1
+  resolution: "@envelop/response-cache@npm:2.3.1"
+  dependencies:
+    "@graphql-tools/utils": ^8.6.1
+    fast-json-stable-stringify: ^2.1.0
+    lru-cache: ^6.0.0
+  peerDependencies:
+    "@envelop/core": ^2.3.1
+    graphql: ^14.0.0 || ^15.0.0 || ^16.0.0
+  checksum: cfe87aab94ae47e2241b00c6c495ebf04c9d856521eb53a0aae10c845b810c26f310c17cc87c691521531659f339fb2fccb017d11fc1e86e673eee0f76b09fec
+  languageName: node
+  linkType: hard
+
 "@envelop/types@npm:2.2.0":
   version: 2.2.0
   resolution: "@envelop/types@npm:2.2.0"
@@ -2760,6 +2774,17 @@ __metadata:
   peerDependencies:
     graphql: ^14.0.0 || ^15.0.0 || ^16.0.0
   checksum: 2516cac8adc3628e0d2bbc6a6db4196114137caf359ad2c53b8287a1d2101c7539c55d7af140230d6e5b3b2acbc041720f4cec45ca2bd6eefdaede64ccba0faa
+  languageName: node
+  linkType: hard
+
+"@graphql-tools/utils@npm:^8.6.1":
+  version: 8.6.8
+  resolution: "@graphql-tools/utils@npm:8.6.8"
+  dependencies:
+    tslib: ~2.3.0
+  peerDependencies:
+    graphql: ^14.0.0 || ^15.0.0 || ^16.0.0
+  checksum: 69c2a5a783f093c630f60364fa28d5a180581a796823eb438672bc2f921f1d7f5070e7ebf818b193c0a3902a67d2005d6bb05d064431f40dbe459a7fa85891e9
   languageName: node
   linkType: hard
 
@@ -7260,6 +7285,7 @@ __metadata:
   resolution: "api@workspace:api"
   dependencies:
     "@apollo/client": ^3.5.10
+    "@envelop/response-cache": ^2.3.1
     "@redwoodjs/api": ^1.0.1
     "@redwoodjs/graphql-server": ^1.0.1
     "@types/crypto-js": ^4.1.1
@@ -12441,7 +12467,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fast-json-stable-stringify@npm:^2.0.0":
+"fast-json-stable-stringify@npm:^2.0.0, fast-json-stable-stringify@npm:^2.1.0":
   version: 2.1.0
   resolution: "fast-json-stable-stringify@npm:2.1.0"
   checksum: 7f081eb0b8a64e0057b3bb03f974b3ef00135fbf36c1c710895cd9300f13c94ba809bb3a81cf4e1b03f6e5285610a61abbd7602d0652de423144dfee5a389c9b
