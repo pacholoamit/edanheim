@@ -1,9 +1,17 @@
 import type { ListStorageQuery } from 'types/graphql'
 import type { CellSuccessProps, CellFailureProps } from '@redwoodjs/web'
+import { Text } from '@mantine/core'
 
 export const QUERY = gql`
   query ListStorageQuery {
-    listStorage
+    listStorage {
+      id
+      name
+      credential {
+        accessToken
+        refreshToken
+      }
+    }
   }
 `
 
@@ -18,5 +26,9 @@ export const Failure = ({ error }: CellFailureProps) => (
 export const Success = ({
   listStorage,
 }: CellSuccessProps<ListStorageQuery>) => {
-  return <div>{JSON.stringify(listStorage)}</div>
+  return listStorage.map((storage) => (
+    <div key={storage.id}>
+      <Text>{storage.name}</Text>
+    </div>
+  ))
 }
