@@ -4,9 +4,10 @@ import { default as useGoogleCredential } from 'src/hooks/useAddNewGoogleDriveCr
 import { navigate, routes, useParams } from '@redwoodjs/router'
 import { ApolloError } from '@apollo/client'
 
+const onError = (_: ApolloError) => navigate(routes.storage())
+
 const GoogleAuthCallbackPage = () => {
   const { code } = useParams()
-  const onError = (_: ApolloError) => navigate(routes.storage())
   const { addCredential, crededentialId, loading } = useGoogleCredential(code, {
     onError,
   })

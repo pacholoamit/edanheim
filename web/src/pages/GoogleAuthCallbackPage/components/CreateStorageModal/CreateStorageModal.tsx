@@ -1,24 +1,7 @@
-import {
-  Modal,
-  TextInput,
-  Button,
-  Stack,
-  Checkbox,
-  LoadingOverlay,
-} from '@mantine/core'
-import { useMutation } from '@redwoodjs/web'
-import { AddNewGoogleDriveStorageMutation } from 'web/types/graphql'
-import { logdev } from 'src/utils'
-
-const ADD_NEW_GOOGLE_DRIVE_STORAGE = gql`
-  mutation AddNewGoogleDriveStorageMutation(
-    $input: AddNewGoogleDriveStorageInput!
-  ) {
-    addNewGoogleDriveStorage(input: $input) {
-      storageId
-    }
-  }
-`
+import useAddNewGoogleDriveStorage from 'src/hooks/useAddNewGoogleDriveStorage'
+import { Modal, TextInput, Button, Stack, Checkbox } from '@mantine/core'
+import { showNotification } from '@mantine/notifications'
+import { Check } from 'tabler-icons-react'
 
 interface CreateStorageModalProps {
   credentialId: string
@@ -27,29 +10,32 @@ interface CreateStorageModalProps {
 
 const CreateStorageModal: React.FC<CreateStorageModalProps> = ({
   credentialId,
-  loading,
+  loading: loadingCredential,
 }) => {
   const [storageName, setStorageName] = React.useState<string>('')
   const [checked, setChecked] = React.useState<boolean>(false)
   const [opened, setOpened] = React.useState<boolean>(true)
-  const [addStorage] = useMutation<AddNewGoogleDriveStorageMutation>(
-    ADD_NEW_GOOGLE_DRIVE_STORAGE
-  )
-  logdev(loading)
+  const { addStorage, loading } = useAddNewGoogleDriveStorage({
+    onCompleted: () => {
+      showNotification({
+        title: 'Niceeeee....',
+        message: 'Storage created',
+        color: 'teal',
+        icon: <Check />,
+      })
+      setOpened(false)
+    },
+  })
+
+  const isLoading = loadingCredential || loading
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setStorageName(e.target.value)
   }
 
-  const onClick = () =>
-    addStorage({
-      variables: {
-        input: {
-          name: storageName,
-          credentialId,
-        },
-      },
-    })
+  const onClick = () => {
+    addStorage({ variables: { input: { name: storageName, credentialId } } })
+  }
   return (
     <Modal
       opened={opened}
@@ -79,7 +65,7 @@ const CreateStorageModal: React.FC<CreateStorageModalProps> = ({
           disabled={!checked}
           variant="light"
           onClick={onClick}
-          loading={loading}
+          loading={isLoading}
         >
           Add storage
         </Button>
