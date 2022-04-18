@@ -2,11 +2,13 @@ import StoragePage from 'src/pages/StoragePage'
 import CreateStorageModal from 'src/pages/GoogleAuthCallbackPage/components/CreateStorageModal'
 import { default as useGoogleCredential } from 'src/hooks/useAddNewGoogleDriveCredential'
 import { navigate, routes, useParams } from '@redwoodjs/router'
+import { ApolloError } from '@apollo/client'
 
 const GoogleAuthCallbackPage = () => {
   const { code } = useParams()
+  const onError = (_: ApolloError) => navigate(routes.storage())
   const { addCredential, crededentialId, loading } = useGoogleCredential(code, {
-    onError: () => navigate(routes.storage()),
+    onError,
   })
 
   React.useEffect(() => {
