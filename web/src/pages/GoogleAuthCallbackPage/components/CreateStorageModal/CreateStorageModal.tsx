@@ -27,8 +27,6 @@ const CreateStorageModal: React.FC<CreateStorageModalProps> = ({
     },
   })
 
-  const isLoading = loadingCredential || loading
-
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setStorageName(e.target.value)
   }
@@ -36,6 +34,8 @@ const CreateStorageModal: React.FC<CreateStorageModalProps> = ({
   const onClick = () => {
     addStorage({ variables: { input: { name: storageName, credentialId } } })
   }
+
+  const isLoading = loadingCredential || loading
   return (
     <Modal
       opened={opened}
