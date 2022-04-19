@@ -2,10 +2,12 @@
 // for options.
 
 import { PrismaClient } from '@prisma/client'
-
 import { emitLogLevels, handlePrismaLogging } from '@redwoodjs/api/logger'
-
-import { logger } from './logger'
+import { logger } from 'src/lib/logger'
+import {
+  isPrismaMiddlewareInvalidationEnabled,
+  handlePrismaInvalidation,
+} from 'src/lib/cache'
 
 /*
  * Instance of the Prisma Client
@@ -19,3 +21,11 @@ handlePrismaLogging({
   logger,
   logLevels: ['info', 'warn', 'error'],
 })
+
+if (isPrismaMiddlewareInvalidationEnabled) {
+  db.$use(async (params, next) => {
+    await handlePrismaInvalidation(params)
+    const result = await next(params)
+    return result
+  })
+}
