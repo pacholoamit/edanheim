@@ -9,5 +9,5 @@ export const cache = createRedisCache({ redis })
 export const responseCache = useResponseCache({
   cache,
   ttl: parseInt(process.env.EXPIRE_IN_SECONDS) * 1000,
-  session: (context) => String(context.currentUser.sub),
+  session: (context) => String(context.currentUser.sub), // Cache based on supabase ID
 })
